@@ -1,0 +1,10 @@
+^htmxr\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^dev$
+^\.vscode$
+^[.]?air[.]toml$
+^\.lintr$
+^CLAUDE\.md$
+^\.claude

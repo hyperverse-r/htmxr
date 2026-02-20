@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# htmxr
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+> Build modern web applications in R — without writing JavaScript.
+
+htmxr is a lightweight R framework that combines [htmx](https://htmx.org) 
+for dynamic page updates with [plumber2](https://plumber2.posit.co) for 
+non-blocking HTTP endpoints.
+
+If you know Shiny, you'll feel at home. If you've hit Shiny's limits — 
+routing, progressive loading, scalability — htmxr is your next step.
+
+## Installation
+
+You can install the development version of htmxr like so:
+
+``` r
+# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+```
+
+## Why htmxr?
+
+_more details to come_
