@@ -16,7 +16,7 @@ pak::pak("thinkr-open/htmxr")
 
 ## How it works
 
-![](reference/figures/intro_htmxr.png)
+![htmxr architecture diagram](reference/figures/intro_htmxr.png)
 
 On first load, the server returns a complete HTML page. When the user
 interacts with an element (e.g. a slider), htmx sends a request to the R
@@ -90,7 +90,8 @@ function(query) {
 }
 ```
 
-![](reference/figures/intro_htmxr_hello.png)
+![htmxr hello example
+screenshot](reference/figures/intro_htmxr_hello.png)
 
 ### Run it
 
