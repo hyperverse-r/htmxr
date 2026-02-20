@@ -34,9 +34,9 @@ pak::pak("thinkr-open/htmxr")
 
 ## How it works
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("man/figures/intro_htmxr.png")
-```
+<p align="center">
+  <img src="man/figures/intro_htmxr.png" width="50%" alt="htmxr architecture diagram">
+</p>
 
 On first load, the server returns a complete HTML page. When the user interacts
 with an element (e.g. a slider), htmx sends a request to the R endpoint and
@@ -103,9 +103,9 @@ function(query) {
 }
 ```
 
-```{r, echo=FALSE, out.width="50%"}
-knitr::include_graphics("man/figures/intro_htmxr_hello.png")
-```
+<p align="center">
+  <img src="man/figures/intro_htmxr_hello.png" width="70%" alt="htmxr hello example screenshot">
+</p>
 
 
 ### Run it
