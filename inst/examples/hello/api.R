@@ -63,7 +63,7 @@ function() {
               tags$div(
                 class = "bg-white p-3 rounded",
                 hx_slider_input(
-                  "bins",
+                  id = "bins",
                   label = "Number of bins:",
                   value = 30,
                   min = 1,
