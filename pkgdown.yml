@@ -1,0 +1,8 @@
+pandoc: 3.1.11
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles: {}
+last_built: 2026-02-20T16:11Z
+urls:
+  reference: https://thinkr-open.github.io/htmxr/reference
+  article: https://thinkr-open.github.io/htmxr/articles
