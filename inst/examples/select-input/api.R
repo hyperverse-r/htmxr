@@ -15,9 +15,12 @@ diamond_data <- function(cut_filter = "all") {
   data <- if (cut_filter == "all") {
     diamonds |> slice_head(n = 20)
   } else {
-    diamonds |> filter(cut == cut_filter) |> slice_head(n = 20)
+    diamonds |>
+      filter(cut == cut_filter) |>
+      slice_head(n = 20)
   }
-  data |> mutate(price = paste0("$", price))
+  data |>
+    mutate(price = paste0("$", price))
 }
 
 #* @get /
