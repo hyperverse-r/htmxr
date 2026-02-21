@@ -1,8 +1,6 @@
-library(plumber2)
 library(htmxr)
 library(ggplot2)
 library(dplyr)
-library(htmltools)
 
 bootstrap_css <- tags$link(
   rel = "stylesheet",
