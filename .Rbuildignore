@@ -13,3 +13,4 @@
 ^pkgdown$
 README.html
 ^\.github$
+.pre-commit-config.yaml

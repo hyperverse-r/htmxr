@@ -4,12 +4,15 @@
 \alias{hx_page}
 \title{Generate a complete HTML page with htmx}
 \usage{
-hx_page(..., lang = "en")
+hx_page(..., lang = "en", html_attrs = list())
 }
 \arguments{
 \item{...}{page content. Use \code{\link[=hx_head]{hx_head()}} to add elements to the head.}
 
 \item{lang}{language code for the \verb{<html>} element (default \code{"en"}).}
+
+\item{html_attrs}{a named list of additional attributes to set on the
+\verb{<html>} element (e.g. \code{list("data-theme" = "cupcake")} for DaisyUI).}
 }
 \value{
 A length-one character string containing the full HTML document
