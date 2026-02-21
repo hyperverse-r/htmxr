@@ -42,28 +42,15 @@ hx_button <- function(
   confirm = NULL,
   ...
 ) {
-  hx <- hx_attrs(
-    get = get,
-    post = post,
-    target = target,
-    swap = swap,
-    trigger = trigger,
-    indicator = indicator,
-    swap_oob = swap_oob,
-    confirm = confirm
-  )
-
-  do.call(
-    tags$button,
-    c(
-      list(
-        label,
-        type = "button",
-        id = id,
-        class = class
-      ),
-      hx,
-      list(...)
+  tags$button(label, type = "button", id = id, class = class, ...) |>
+    hx_set(
+      get = get,
+      post = post,
+      target = target,
+      swap = swap,
+      trigger = trigger,
+      indicator = indicator,
+      swap_oob = swap_oob,
+      confirm = confirm
     )
-  )
 }

@@ -1,4 +1,3 @@
-library(plumber2)
 library(svglite)
 library(htmxr)
 
@@ -80,17 +79,13 @@ function() {
             # Plot
             tags$div(
               class = "col-md-9",
-              tags$div(
-                id = "plot",
-                class = "text-center",
-
-                ### HTMX ---
-                `hx-get` = "/plot",
-                `hx-trigger` = "load",
-                `hx-target` = "#plot",
-                `hx-swap` = "innerHTML"
-                # ---
-              )
+              tags$div(id = "plot", class = "text-center") |>
+                hx_set(
+                  get = "/plot",
+                  trigger = "load",
+                  target = "#plot",
+                  swap = "innerHTML"
+                )
             )
           )
         )
