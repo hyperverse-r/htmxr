@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/thinkr-open/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/thinkr-open/htmxr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 > Build modern web applications in R — without writing JavaScript.
@@ -20,7 +20,7 @@ right HTML and wire everything together.
 ## Installation
 
 ``` r
-pak::pak("thinkr-open/htmxr")
+pak::pak("hyperverse-r/htmxr")
 ```
 
 ## How it works
