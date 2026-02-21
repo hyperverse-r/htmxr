@@ -12,7 +12,15 @@
   : Generate a complete HTML page with htmx
 - [`hx_run_example()`](https://thinkr-open.github.io/htmxr/reference/hx_run_example.md)
   : Run an htmxr example
+- [`hx_select_input()`](https://thinkr-open.github.io/htmxr/reference/hx_select_input.md)
+  : Select input
 - [`hx_serve_assets()`](https://thinkr-open.github.io/htmxr/reference/hx_serve_assets.md)
   : Serve htmxr static assets
+- [`hx_set()`](https://thinkr-open.github.io/htmxr/reference/hx_set.md)
+  : Add htmx attributes to any HTML tag
 - [`hx_slider_input()`](https://thinkr-open.github.io/htmxr/reference/hx_slider_input.md)
   : Slider input
+- [`hx_table()`](https://thinkr-open.github.io/htmxr/reference/hx_table.md)
+  : Table with htmx-powered tbody
+- [`hx_table_rows()`](https://thinkr-open.github.io/htmxr/reference/hx_table_rows.md)
+  : Table rows fragment

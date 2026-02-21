@@ -99,10 +99,31 @@ screenshot](reference/figures/intro_htmxr_hello.png)
 hx_run_example("hello")
 ```
 
-## Key ideas
+## Design philosophy
+
+[htmxr](https://github.com/thinkr-open/htmxr) is built around a few
+explicit constraints:
+
+- **Primitives, not a framework** —
+  [htmxr](https://github.com/thinkr-open/htmxr) provides low-level
+  building blocks. It doesn’t impose a page structure, a routing
+  convention, or an application model. You compose your own app from
+  small, predictable pieces.
+
+- **HTML over abstraction** — Every `hx_*` function produces standard
+  HTML elements with `hx-*` attributes. There is no hidden layer, no
+  reactivity graph, no virtual DOM. What you write in R is what lands in
+  the browser.
 
 - **CSS-agnostic** — [htmxr](https://github.com/thinkr-open/htmxr)
-  doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, or
-  nothing at all.
+  doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, plain
+  CSS, or nothing at all.
+
+- **R-centric** — All logic lives in R. htmx handles client-side
+  interactions via HTML attributes — no JavaScript required in your
+  application code.
+
 - **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
-  directly from [htmxr](https://github.com/thinkr-open/htmxr).
+  directly from [htmxr](https://github.com/thinkr-open/htmxr), so you
+  don’t need to load [htmltools](https://github.com/rstudio/htmltools)
+  separately.

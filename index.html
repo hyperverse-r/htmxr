@@ -132,13 +132,15 @@
 </div>
 </div>
 <div class="section level2">
-<h2 id="key-ideas">Key ideas<a class="anchor" aria-label="anchor" href="#key-ideas"></a>
+<h2 id="design-philosophy">Design philosophy<a class="anchor" aria-label="anchor" href="#design-philosophy"></a>
 </h2>
+<p><a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a> is built around a few explicit constraints:</p>
 <ul>
-<li>
-<strong>CSS-agnostic</strong> — <a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a> doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, or nothing at all.</li>
-<li>
-<strong>htmltools re-exported</strong> — <code>tags</code>, <code>div</code>, <code>p</code>, etc. are available directly from <a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a>.</li>
+<li><p><strong>Primitives, not a framework</strong> — <a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a> provides low-level building blocks. It doesn’t impose a page structure, a routing convention, or an application model. You compose your own app from small, predictable pieces.</p></li>
+<li><p><strong>HTML over abstraction</strong> — Every <code>hx_*</code> function produces standard HTML elements with <code>hx-*</code> attributes. There is no hidden layer, no reactivity graph, no virtual DOM. What you write in R is what lands in the browser.</p></li>
+<li><p><strong>CSS-agnostic</strong> — <a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a> doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, plain CSS, or nothing at all.</p></li>
+<li><p><strong>R-centric</strong> — All logic lives in R. htmx handles client-side interactions via HTML attributes — no JavaScript required in your application code.</p></li>
+<li><p><strong>htmltools re-exported</strong> — <code>tags</code>, <code>div</code>, <code>p</code>, etc. are available directly from <a href="https://github.com/thinkr-open/htmxr" class="external-link">htmxr</a>, so you don’t need to load <a href="https://github.com/rstudio/htmltools" class="external-link">htmltools</a> separately.</p></li>
 </ul>
 </div>
 </div>

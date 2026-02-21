@@ -5,7 +5,7 @@ Generate a complete HTML page with htmx
 ## Usage
 
 ``` r
-hx_page(..., lang = "en")
+hx_page(..., lang = "en", html_attrs = list())
 ```
 
 ## Arguments
@@ -19,6 +19,11 @@ hx_page(..., lang = "en")
 - lang:
 
   language code for the `<html>` element (default `"en"`).
+
+- html_attrs:
+
+  a named list of additional attributes to set on the `<html>` element
+  (e.g. `list("data-theme" = "cupcake")` for DaisyUI).
 
 ## Value
 

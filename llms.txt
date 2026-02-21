@@ -99,13 +99,34 @@ screenshot](reference/figures/intro_htmxr_hello.png)
 hx_run_example("hello")
 ```
 
-## Key ideas
+## Design philosophy
+
+[htmxr](https://github.com/thinkr-open/htmxr) is built around a few
+explicit constraints:
+
+- **Primitives, not a framework** —
+  [htmxr](https://github.com/thinkr-open/htmxr) provides low-level
+  building blocks. It doesn’t impose a page structure, a routing
+  convention, or an application model. You compose your own app from
+  small, predictable pieces.
+
+- **HTML over abstraction** — Every `hx_*` function produces standard
+  HTML elements with `hx-*` attributes. There is no hidden layer, no
+  reactivity graph, no virtual DOM. What you write in R is what lands in
+  the browser.
 
 - **CSS-agnostic** — [htmxr](https://github.com/thinkr-open/htmxr)
-  doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, or
-  nothing at all.
+  doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, plain
+  CSS, or nothing at all.
+
+- **R-centric** — All logic lives in R. htmx handles client-side
+  interactions via HTML attributes — no JavaScript required in your
+  application code.
+
 - **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
-  directly from [htmxr](https://github.com/thinkr-open/htmxr).
+  directly from [htmxr](https://github.com/thinkr-open/htmxr), so you
+  don’t need to load [htmltools](https://github.com/rstudio/htmltools)
+  separately.
 
 # Package index
 
@@ -121,8 +142,16 @@ hx_run_example("hello")
   : Generate a complete HTML page with htmx
 - [`hx_run_example()`](https://thinkr-open.github.io/htmxr/reference/hx_run_example.md)
   : Run an htmxr example
+- [`hx_select_input()`](https://thinkr-open.github.io/htmxr/reference/hx_select_input.md)
+  : Select input
 - [`hx_serve_assets()`](https://thinkr-open.github.io/htmxr/reference/hx_serve_assets.md)
   : Serve htmxr static assets
+- [`hx_set()`](https://thinkr-open.github.io/htmxr/reference/hx_set.md)
+  : Add htmx attributes to any HTML tag
 - [`hx_slider_input()`](https://thinkr-open.github.io/htmxr/reference/hx_slider_input.md)
   : Slider input
+- [`hx_table()`](https://thinkr-open.github.io/htmxr/reference/hx_table.md)
+  : Table with htmx-powered tbody
+- [`hx_table_rows()`](https://thinkr-open.github.io/htmxr/reference/hx_table_rows.md)
+  : Table rows fragment
 
