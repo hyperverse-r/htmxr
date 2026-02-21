@@ -104,6 +104,13 @@ hx_table <- function(
   labels <- columns
   if (!is.null(col_labels)) {
     if (!is.null(names(col_labels))) {
+      invalid <- setdiff(names(col_labels), columns)
+      if (length(invalid) > 0) {
+        stop(
+          "col_labels names not found in columns: ",
+          paste(invalid, collapse = ", ")
+        )
+      }
       labels[match(names(col_labels), columns)] <- col_labels
     } else {
       labels <- col_labels

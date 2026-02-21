@@ -92,6 +92,16 @@ test_that("hx_table() col_labels named replaces only specified columns", {
   expect_equal(tr$children[[2]]$children[[1]], "Price ($)")
 })
 
+test_that("hx_table() errors on unknown col_labels names", {
+  expect_error(
+    hx_table(
+      columns = c("cut", "price"),
+      col_labels = c(prix = "Price")
+    ),
+    "col_labels names not found in columns: prix"
+  )
+})
+
 test_that("hx_table() tbody has the provided id", {
   result <- hx_table(columns = c("cut", "price"), id = "tbody")
   tbody <- result$children[[2]]
