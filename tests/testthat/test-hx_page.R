@@ -43,3 +43,10 @@ test_that("hx_page() works with empty html_attrs", {
   result <- hx_page()
   expect_match(result, "<html", fixed = TRUE)
 })
+
+test_that("hx_page() errors when html_attrs contains 'lang'", {
+  expect_error(
+    hx_page(html_attrs = list(lang = "fr")),
+    "`lang`"
+  )
+})

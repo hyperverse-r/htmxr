@@ -31,6 +31,12 @@ hx_page <- function(..., lang = "en", html_attrs = list()) {
   head_extra <- unlist(dots[is_head], recursive = FALSE)
   body_content <- dots[!is_head]
 
+  if ("lang" %in% names(html_attrs)) {
+    stop(
+      'Use the `lang` parameter of `hx_page()` to set the language, not `html_attrs`.'
+    )
+  }
+
   html_args <- c(
     list(lang = lang),
     html_attrs,
