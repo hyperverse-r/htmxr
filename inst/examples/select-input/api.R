@@ -1,4 +1,5 @@
 library(plumber2)
+library(htmxr)
 library(ggplot2)
 library(dplyr)
 library(htmltools)
@@ -45,9 +46,9 @@ function() {
           class = "card-body",
           hx_select_input(
             id = "cut",
-            label = "Filtrer par cut :",
+            label = "Filter by cut:",
             choices = c(
-              "Tous" = "all",
+              "All" = "all",
               "Fair",
               "Good",
               "Very Good",
@@ -67,7 +68,7 @@ function() {
         class = "card",
         tags$div(
           class = "card-body p-0",
-          htmxr::hx_table(
+          hx_table(
             columns = c("cut", "color", "clarity", "price"),
             col_labels = c("Cut", "Color", "Clarity", "Price"),
             id = "tbody",
@@ -88,7 +89,7 @@ function() {
 #* @parser none
 #* @serializer none
 function(query) {
-  htmxr::hx_table_rows(
+  hx_table_rows(
     diamond_data(query$cut),
     columns = c("cut", "color", "clarity", "price")
   )
