@@ -59,34 +59,27 @@ hx_slider_input <- function(
   confirm = NULL,
   ...
 ) {
-  hx <- hx_attrs(
-    get = get,
-    post = post,
-    target = target,
-    swap = swap,
-    trigger = trigger,
-    indicator = indicator,
-    swap_oob = swap_oob,
-    confirm = confirm
-  )
-
-  input <- do.call(
-    tags$input,
-    c(
-      list(
-        type = "range",
-        id = id,
-        name = name,
-        value = as.character(value),
-        min = as.character(min),
-        max = as.character(max),
-        step = as.character(step),
-        class = class
-      ),
-      hx,
-      list(...)
+  input <- tags$input(
+    type = "range",
+    id = id,
+    name = name,
+    value = as.character(value),
+    min = as.character(min),
+    max = as.character(max),
+    step = as.character(step),
+    class = class,
+    ...
+  ) |>
+    hx_set(
+      get = get,
+      post = post,
+      target = target,
+      swap = swap,
+      trigger = trigger,
+      indicator = indicator,
+      swap_oob = swap_oob,
+      confirm = confirm
     )
-  )
 
   if (!is.null(label)) {
     tags$div(

@@ -86,17 +86,6 @@ hx_select_input <- function(
     USE.NAMES = FALSE
   )
 
-  hx <- hx_attrs(
-    get = get,
-    post = post,
-    target = target,
-    swap = swap,
-    trigger = trigger,
-    indicator = indicator,
-    swap_oob = swap_oob,
-    confirm = confirm
-  )
-
   select_tag <- do.call(
     tags$select,
     c(
@@ -106,11 +95,20 @@ hx_select_input <- function(
         class = class,
         multiple = if (multiple) NA else NULL
       ),
-      hx,
       options_tags,
       list(...)
     )
-  )
+  ) |>
+    hx_set(
+      get = get,
+      post = post,
+      target = target,
+      swap = swap,
+      trigger = trigger,
+      indicator = indicator,
+      swap_oob = swap_oob,
+      confirm = confirm
+    )
 
   if (!is.null(label)) {
     tags$div(

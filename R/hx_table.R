@@ -23,13 +23,16 @@
 hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
   if (!is.null(columns)) data <- data[, columns, drop = FALSE]
 
-  do.call(tagList, lapply(seq_len(nrow(data)), function(i) {
-    row <- data[i, , drop = FALSE]
-    cells <- lapply(names(row), function(col) {
-      tags$td(class = col_classes[[col]], as.character(row[[col]]))
+  do.call(
+    tagList,
+    lapply(seq_len(nrow(data)), function(i) {
+      row <- data[i, , drop = FALSE]
+      cells <- lapply(names(row), function(col) {
+        tags$td(class = col_classes[[col]], as.character(row[[col]]))
+      })
+      do.call(tags$tr, cells)
     })
-    do.call(tags$tr, cells)
-  }))
+  )
 }
 
 #' Table with htmx-powered tbody
@@ -112,9 +115,20 @@ hx_table <- function(
   thead <- tags$thead(class = thead_class, do.call(tags$tr, header_cells))
 
   # tbody
-  hx <- hx_attrs(get, post, target, swap, trigger, indicator, swap_oob, confirm)
-  rows <- if (!is.null(data)) hx_table_rows(data, columns = columns, col_classes = col_classes) else list()
-  tbody <- do.call(tags$tbody, c(list(id = id), hx, rows))
+  rows <- if (!is.null(data))
+    hx_table_rows(data, columns = columns, col_classes = col_classes) else
+    list()
+  tbody <- do.call(tags$tbody, c(list(id = id), rows)) |>
+    hx_set(
+      get = get,
+      post = post,
+      target = target,
+      swap = swap,
+      trigger = trigger,
+      indicator = indicator,
+      swap_oob = swap_oob,
+      confirm = confirm
+    )
 
   # table
   do.call(tags$table, c(list(class = class), list(thead, tbody), list(...)))

@@ -71,7 +71,10 @@ test_that("hx_table() col_labels = NULL uses column names", {
 })
 
 test_that("hx_table() col_labels positional replaces all labels", {
-  result <- hx_table(columns = c("cut", "price"), col_labels = c("Cut", "Price ($)"))
+  result <- hx_table(
+    columns = c("cut", "price"),
+    col_labels = c("Cut", "Price ($)")
+  )
   thead <- result$children[[1]]
   tr <- thead$children[[1]]
   expect_equal(tr$children[[1]]$children[[1]], "Cut")
@@ -79,7 +82,10 @@ test_that("hx_table() col_labels positional replaces all labels", {
 })
 
 test_that("hx_table() col_labels named replaces only specified columns", {
-  result <- hx_table(columns = c("cut", "price"), col_labels = c(price = "Price ($)"))
+  result <- hx_table(
+    columns = c("cut", "price"),
+    col_labels = c(price = "Price ($)")
+  )
   thead <- result$children[[1]]
   tr <- thead$children[[1]]
   expect_equal(tr$children[[1]]$children[[1]], "cut")

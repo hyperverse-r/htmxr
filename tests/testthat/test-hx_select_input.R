@@ -53,7 +53,11 @@ test_that("hx_select_input() generates options from named vector", {
 })
 
 test_that("hx_select_input() marks selected option", {
-  result <- hx_select_input("cut", choices = c("All" = "all", "Fair"), selected = "all")
+  result <- hx_select_input(
+    "cut",
+    choices = c("All" = "all", "Fair"),
+    selected = "all"
+  )
   rendered <- as.character(result)
   expect_match(rendered, 'value="all" selected', fixed = TRUE)
   expect_no_match(rendered, 'value="Fair" selected')
@@ -66,7 +70,11 @@ test_that("hx_select_input() multiple = TRUE adds multiple attribute", {
 })
 
 test_that("hx_select_input() multiple = FALSE omits multiple attribute", {
-  result <- hx_select_input("cut", choices = c("Fair", "Good"), multiple = FALSE)
+  result <- hx_select_input(
+    "cut",
+    choices = c("Fair", "Good"),
+    multiple = FALSE
+  )
   expect_null(result$attribs$multiple)
 })
 

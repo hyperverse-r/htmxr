@@ -57,8 +57,17 @@ test_that("hx_attrs() with all params returns all attributes", {
     confirm = "Sure?"
   )
   expect_length(result, 8)
-  expect_named(result, c(
-    "hx-get", "hx-post", "hx-target", "hx-swap",
-    "hx-trigger", "hx-indicator", "hx-swap-oob", "hx-confirm"
-  ))
+  expect_named(
+    result,
+    c(
+      "hx-get",
+      "hx-post",
+      "hx-target",
+      "hx-swap",
+      "hx-trigger",
+      "hx-indicator",
+      "hx-swap-oob",
+      "hx-confirm"
+    )
+  )
 })
