@@ -18,3 +18,4 @@ README.html
 ^codecov\.yml$
 ^doc$
 ^Meta$
+^cran-comments\.md$
