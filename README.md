@@ -1,13 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# htmxr
+# htmxr <a href="https://hyperverse-r.github.io/htmxr/"><img src="man/figures/logo.png" align="right" height="138" alt="htmxr website" /></a>
 
 <!-- badges: start -->
 
+![hyperverse](https://img.shields.io/badge/hyperverse-232323)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/thinkr-open/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/thinkr-open/htmxr/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-CHECK](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/hyperverse-r/htmxr/graph/badge.svg)](https://app.codecov.io/gh/hyperverse-r/htmxr)
 <!-- badges: end -->
 
 > Build modern web applications in R — without writing JavaScript.
@@ -20,7 +23,7 @@ right HTML and wire everything together.
 ## Installation
 
 ``` r
-pak::pak("thinkr-open/htmxr")
+pak::pak("hyperverse-r/htmxr")
 ```
 
 ## How it works
@@ -130,3 +133,9 @@ hx_run_example("hello")
 -   **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
     directly from `{htmxr}`, so you don’t need to load `{htmltools}`
     separately.
+
+## Code of Conduct
+
+Please note that the htmxr project is released with a [Contributor Code
+of Conduct](https://hyperverse-r.github.io/htmxr/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

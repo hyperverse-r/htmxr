@@ -13,6 +13,12 @@
 #'   available example names invisibly. Otherwise does not return (the server
 #'   blocks).
 #'
+#' @examples
+#' \dontrun{
+#'   hx_run_example()         # list available examples
+#'   hx_run_example("hello")  # run the hello example
+#' }
+#'
 #' @export
 hx_run_example <- function(example = NULL, port = 8080) {
   examples_dir <- system.file("examples", package = "htmxr")

@@ -2,7 +2,9 @@
 .Rhistory
 .RData
 .DS_Store
-.claude/
 .vscode/
 README.html
 docs/
+inst/doc
+/doc/
+/Meta/

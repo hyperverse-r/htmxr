@@ -17,3 +17,12 @@ A list with class \code{hx_head}, to be passed to \code{\link[=hx_page]{hx_page(
 \description{
 Wraps tags to be included in the page head when passed to \code{\link[=hx_page]{hx_page()}}.
 }
+\examples{
+hx_head(title = "My app")
+
+hx_head(
+  title = "My app",
+  tags$link(rel = "stylesheet", href = "/style.css")
+)
+
+}

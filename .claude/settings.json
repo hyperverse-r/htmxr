@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(air:*)",
+      "Bash(R --slave -e:*)",
+      "Bash(R:*)",
+      "Bash(Rscript:*)",
+      "WebFetch(domain:alpinejs.dev)",
+      "WebFetch(domain:htmx.org)"
+    ]
+  }
+}

@@ -1,8 +1,52 @@
 # htmxr
 
+## Commandes courantes
+
+| Raccourci | Tâche | Commande |
+|-----------|-------|----------|
+| `/check` | Vérifier le package | `R -e "devtools::check()"` |
+| `/test` | Lancer les tests | `R -e "devtools::test()"` |
+| `/document` | Mettre à jour la doc | `R -e "devtools::document()"` |
+| `/attach` | Mettre à jour le package | `R -e "attachment::att_amend_desc()"` |
+| `/site` | Construire le site pkgdown | `R -e "pkgdown::build_site()"` |
+| `/format` | Formater le code | `air format .` |
+
+## Agents
+
+| Raccourci | Rôle | Quand l'invoquer |
+|-----------|------|-----------------|
+| `/htmx-expert` | Revue fidélité et idiomaticité htmx | Nouvelle primitive créée ou modifiée |
+| `/shiny-ergonomie` | Regard dev Shiny sur l'intuitivité | Travail sur nommage ou documentation |
+| `/shiny-cas-usage` | Couverture fonctionnelle par cas d'usage | Alimenter la roadmap |
+
 ## Contexte du projet
 
 `htmxr` est un package R qui fournit des primitives pour construire des applications web avec htmx et plumber2. Il est agnostique CSS — il ne dépend d'aucun framework CSS particulier.
+
+## Écosystème hyperverse
+
+`htmxr` fait partie d'un écosystème plus large, structuré à l'image du tidyverse.
+Le package ombrelle **`hyperverse`** permettra d'importer l'ensemble de l'écosystème
+en une seule commande (`library(hyperverse)`).
+
+### Packages de l'écosystème
+
+| Package | Rôle |
+|---------|------|
+| `htmxr` | Core — primitives htmx (ce package) |
+| `alpiner` | Wrapper Alpine.js — logique client déclarative |
+| `framer` | Orchestrateur — scaffold, routing, déploiement (≈ golem pour htmxr) |
+| `htmxr.bootstrap` | Surcouche opinionated Bootstrap sur htmxr |
+| `htmxr.daisy` | Surcouche opinionated Daisy.ui sur htmxr |
+| `hyperverse` | Meta-package ombrelle — charge tout l'écosystème |
+
+### Notes
+
+- `htmxr` est destiné à une publications sur le CRAN
+- `htmxr.bootstrap` et les autres packages de l'hyperverse aussi (les points dans les noms sont acceptés par CRAN, ex: `data.table`)
+- `framer` est un nom provisoire — à confirmer
+- L'écosystème est CSS-agnostique au niveau core ; la dépendance CSS est optée
+  explicitement via `htmxr.bootstrap` ou un équivalent
 
 ## Stack technique
 
@@ -67,45 +111,6 @@ pas selon le dataset ou le domaine métier utilisé.
 - Paramètres htmx : `get`, `post`, `target`, `swap`, `trigger`, `indicator`, `swap_oob`, `confirm`
 - Pas de `paste0()` pour construire du HTML — utiliser `htmltools::tags`
 
-## Roadmap fonctions
-
-### À implémenter (priorité haute)
-
-- `hx_button(label, get, post, target, swap, trigger, indicator, swap_oob, confirm, ...)`
-- `hx_select_input(id, label, choices, get, target, ...)`
-- `hx_update_select(id, label, choices, ...)` — équivalent `updateSelectInput()`
-- `htmxr_is_htmx(request)` — détecte si la requête vient de htmx via header `HX-Request`
-
-### À implémenter (priorité normale)
-
-- `hx_text_input()`
-- `hx_poll()` — helper pour `hx-trigger="every Xs"`
-- `hx_push_url(response, url)` — header `HX-Push-Url`
-
-## Écosystème hyperverse
-
-`htmxr` fait partie d'un écosystème plus large, structuré à l'image du tidyverse.
-Le package ombrelle **`hyperverse`** permettra d'importer l'ensemble de l'écosystème
-en une seule commande (`library(hyperverse)`).
-
-### Packages de l'écosystème
-
-| Package | Rôle |
-|---------|------|
-| `htmxr` | Core — primitives htmx (ce package) |
-| `htmxr.blocks` | Building blocks UI : composants réutilisables (cards, modals, alerts) et structure de page (navbar, sidebar, layout) |
-| `alpiner` | Wrapper Alpine.js — logique client déclarative |
-| `framer` | Orchestrateur — scaffold, routing, déploiement (≈ golem pour htmxr) |
-| `htmxr.bootstrap` | Surcouche opinionated Bootstrap sur htmxr |
-| `hyperverse` | Meta-package ombrelle — charge tout l'écosystème |
-
-### Notes
-
-- `htmxr` et `htmxr.blocks` sont destinés à CRAN
-- `htmxr.bootstrap` aussi (les points dans les noms sont acceptés par CRAN, ex: `data.table`)
-- `framer` est un nom provisoire — à confirmer
-- L'écosystème est CSS-agnostique au niveau core ; la dépendance CSS est optée
-  explicitement via `htmxr.bootstrap` ou un équivalent
 
 ## Règles générales
 
