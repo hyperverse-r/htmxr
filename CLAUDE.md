@@ -10,6 +10,14 @@
 | `/site` | Construire le site pkgdown | `R -e "pkgdown::build_site()"` |
 | `/format` | Formater le code | `air format .` |
 
+## Agents
+
+| Raccourci | Rôle | Quand l'invoquer |
+|-----------|------|-----------------|
+| `/htmx-expert` | Revue fidélité et idiomaticité htmx | Nouvelle primitive créée ou modifiée |
+| `/shiny-ergonomie` | Regard dev Shiny sur l'intuitivité | Travail sur nommage ou documentation |
+| `/shiny-cas-usage` | Couverture fonctionnelle par cas d'usage | Alimenter la roadmap |
+
 ## Contexte du projet
 
 `htmxr` est un package R qui fournit des primitives pour construire des applications web avec htmx et plumber2. Il est agnostique CSS — il ne dépend d'aucun framework CSS particulier.
