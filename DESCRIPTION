@@ -16,10 +16,13 @@ Imports:
     htmltools,
     plumber2
 Suggests:
+    dplyr,
+    ggplot2,
     knitr,
     pak,
-    pkgdown,
+    purrr,
     rmarkdown,
+    svglite,
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr

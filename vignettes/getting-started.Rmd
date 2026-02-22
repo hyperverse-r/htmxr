@@ -157,7 +157,8 @@ function() {
       title = "My app"
     ),
     tags$div(
-      id = "content") |>
+      id = "content"
+    ) |>
       hx_set(
         get = "/content",
         trigger = "load",

@@ -3,7 +3,11 @@ path.d: DESCRIPTION
 dir.r: R
 dir.v: vignettes
 dir.t: tests
-extra.suggests: pkgdown
+extra.suggests:
+  - svglite
+  - ggplot2
+  - dplyr
+  - purrr
 pkg_ignore: ~
 document: yes
 normalize: yes
