@@ -1,0 +1,114 @@
+---
+title: "Why htmxr?"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Why htmxr?}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+> *htmxr does not replace Shiny — it answers different questions.*
+
+---
+
+## Shiny: the reference
+
+Before explaining what htmxr is, it is worth appreciating what Shiny achieved.
+
+Shiny democratized web application development for R users. It handles the browser-to-R communication invisibly, so data scientists can focus entirely on their analysis rather than web infrastructure. What Shiny does remarkably well:
+
+- **Reactive programming** — outputs update automatically when inputs change, through a dependency graph that Shiny manages for you
+- **R ↔ UI integration** — widgets, interactive plots, tables — everything lives in R
+- **Rapid prototyping** — a few lines of code give you a working app
+- **Ecosystem depth** — hundreds of packages (`shinydashboard`, `bslib`, `DT`, `plotly`...) built specifically for Shiny
+
+Shiny is the right tool for rich analytical dashboards, scientific interfaces, and internal data exploration tools.
+
+---
+
+## Different problems, different trade-offs
+
+Shiny and htmxr are built on fundamentally different communication models:
+
+| | Shiny | htmxr |
+|---|---|---|
+| Communication | WebSocket (persistent connection) | HTTP (request/response) |
+| Paradigm | Reactive graph | Explicit HTTP requests |
+| UI updates | Shiny decides what to reload | You target the DOM precisely |
+| State | R session per user | Database or URL |
+| Backend | R only | Any HTTP server |
+
+The practical difference: **in Shiny, your server reacts. In htmxr, your browser asks.**
+
+Shiny maintains one R session per connected user. That session holds all the reactive state — inputs, outputs, intermediate computations — and Shiny decides when to re-evaluate which outputs. This model is powerful and ergonomic, but it means each user consumes a persistent R process.
+
+htmxr apps are largely stateless. Each HTTP request is independent. The server computes something, returns an HTML fragment, and forgets. State lives in the database, the URL, or the client — not in a long-lived R session.
+
+---
+
+## Why choose htmxr?
+
+### Surgical DOM updates
+
+Shiny reloads entire output blocks (`uiOutput`, `renderUI`) — sometimes more than strictly necessary. htmx updates **exactly** the targeted element, nothing more. The result is smoother interfaces, less visual flicker, and a faster perceived experience.
+
+### Scalability and infrastructure cost
+
+Shiny's persistent session model means memory consumption scales linearly with the number of connected users. A pool of shared plumber2 workers handles far more concurrent users on the same hardware.
+
+Deployment is standard: nginx, Docker, any VPS, any cloud platform. No Shiny Server license required.
+
+### Native HTTP: cache, load balancers, SEO
+
+htmxr responses are plain HTML. This means:
+
+- **HTTP caching** — identical requests can be served instantly from a cache layer
+- **Horizontal load balancing** — no sticky sessions to manage, any worker can handle any request
+- **Search engine indexability** — content lives in the HTML, not generated client-side by JavaScript
+
+### Progressive enhancement
+
+An htmxr app can work even when JavaScript is disabled — links and forms remain functional. You can enrich a static HTML page progressively, or add dynamic behaviour to an existing app without rewriting it from scratch.
+
+### Interoperability
+
+htmxr generates standard HTML backed by a standard HTTP API. The same plumber2 endpoints that serve your htmxr frontend can be consumed by mobile apps, other services, or scripts in any language — without translation or adaptation.
+
+**This is particularly valuable when a proof-of-concept built in R needs to grow into a production system: the business logic stays in R, while other parts of the stack can call the same endpoints.**
+
+---
+
+## When to use each
+
+**Choose htmxr when:**
+
+- ✅ Public-facing apps with many concurrent users
+- ✅ Forms, CRUD interfaces, admin panels
+- ✅ SEO and indexability matter
+- ✅ Standard deployment (Docker, VPS, cloud)
+- ✅ You want to expose R logic to other services without rewriting it
+
+**Choose Shiny when:**
+
+- ✅ Rich analytical dashboards and scientific interfaces
+- ✅ Complex reactive logic with many interdependent outputs
+- ✅ Rapid prototyping for internal data exploration
+- ✅ Deep Shiny ecosystem integration (`DT`, `plotly`, `bslib`...)
+- ✅ You want R to own the full stack (no HTTP API needed)
+
+---
+
+## Summary
+
+htmxr is not a Shiny replacement. It is a different tool for different
+problems. If you need reactive, session-based dashboards in R, Shiny is the
+right choice. If you need scalable, HTTP-native apps that interoperate beyond
+R, htmxr is the answer.

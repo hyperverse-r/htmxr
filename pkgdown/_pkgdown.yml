@@ -1,4 +1,8 @@
 url: https://hyperverse-r.github.io/htmxr/
+
+development:
+  mode: auto
+
 template:
   bootstrap: 5
   bslib:
@@ -16,10 +20,16 @@ template:
 
 navbar:
   bg: primary
-  color: white
   structure:
-    left: [intro, reference, articles, news]
+    left: [reference, intro, why, news]
     right: [search]
+  components:
+    intro:
+      text: Getting Started
+      href: articles/getting-started.html
+    why:
+      text: Why htmxr?
+      href: articles/why-htmxr.html
 
 reference:
   - title: Page

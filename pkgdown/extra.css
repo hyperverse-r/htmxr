@@ -4,5 +4,14 @@
 }
 
 .navbar .form-control::placeholder {
-  color: #3366CC;
+  color: var(--bs-primary-rgb);
+}
+
+.navbar .nav-item .nav-link:hover {
+  background: RGBA(var(--bs-body-color-rgb), 0.1);
+}
+
+.text-danger {
+  color: #fa7ae7 !important;
+  background-color: #38424f;
 }

@@ -16,3 +16,5 @@ README.html
 .pre-commit-config.yaml
 ^CODE_OF_CONDUCT\.md$
 ^codecov\.yml$
+^doc$
+^Meta$
