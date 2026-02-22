@@ -7,6 +7,7 @@
 | `/check` | Vérifier le package | `R -e "devtools::check()"` |
 | `/test` | Lancer les tests | `R -e "devtools::test()"` |
 | `/document` | Mettre à jour la doc | `R -e "devtools::document()"` |
+| `/attach` | Mettre à jour le package | `R -e "attachment::att_amend_desc()"` |
 | `/site` | Construire le site pkgdown | `R -e "pkgdown::build_site()"` |
 | `/format` | Formater le code | `air format .` |
 

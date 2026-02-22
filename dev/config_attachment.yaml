@@ -3,7 +3,7 @@ path.d: DESCRIPTION
 dir.r: R
 dir.v: vignettes
 dir.t: tests
-extra.suggests: ~
+extra.suggests: pkgdown
 pkg_ignore: ~
 document: yes
 normalize: yes
