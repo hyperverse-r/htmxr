@@ -21,3 +21,12 @@ A length-one character string containing the full HTML document
 \description{
 Generate a complete HTML page with htmx
 }
+\examples{
+hx_page(tags$h1("Hello, htmxr!"))
+
+hx_page(
+  hx_head(title = "My app"),
+  tags$p("Hello, world!")
+)
+
+}

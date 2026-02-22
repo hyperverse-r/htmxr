@@ -7,6 +7,14 @@
 #'
 #' @return A list with class `hx_head`, to be passed to [hx_page()].
 #'
+#' @examples
+#' hx_head(title = "My app")
+#'
+#' hx_head(
+#'   title = "My app",
+#'   tags$link(rel = "stylesheet", href = "/style.css")
+#' )
+#'
 #' @export
 hx_head <- function(..., title = "htmxr page") {
   structure(list(..., tags$title(title)), class = "hx_head")
@@ -23,6 +31,14 @@ hx_head <- function(..., title = "htmxr page") {
 #'
 #' @return A length-one character string containing the full HTML document
 #'   (including `<!DOCTYPE html>`), ready to be served as an HTTP response.
+#'
+#' @examples
+#' hx_page(tags$h1("Hello, htmxr!"))
+#'
+#' hx_page(
+#'   hx_head(title = "My app"),
+#'   tags$p("Hello, world!")
+#' )
 #'
 #' @export
 hx_page <- function(..., lang = "en", html_attrs = list()) {
