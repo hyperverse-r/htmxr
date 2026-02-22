@@ -60,6 +60,12 @@ htmxr apps are largely stateless. Each HTTP request is independent. The server c
 
 Shiny reloads entire output blocks (`uiOutput`, `renderUI`) — sometimes more than strictly necessary. htmx updates **exactly** the targeted element, nothing more. The result is smoother interfaces, less visual flicker, and a faster perceived experience.
 
+Try the infinite scroll example to see this in practice — 53,940 diamonds loaded progressively, with only the next batch of cards appended to the DOM on each scroll event:
+
+```{r}
+hx_run_example("infinity-scroll")
+```
+
 ### Scalability and infrastructure cost
 
 Shiny's persistent session model means memory consumption scales linearly with the number of connected users. A pool of shared plumber2 workers handles far more concurrent users on the same hardware.
