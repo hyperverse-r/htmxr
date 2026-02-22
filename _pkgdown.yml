@@ -1,3 +1,66 @@
 url: https://hyperverse-r.github.io/htmxr/
 template:
   bootstrap: 5
+  bslib:
+    bootswatch: simplex
+    base_font: { google: "Lato" }
+    heading_font: { google: "Vampiro One" }
+    code_font: { google: "JetBrains Mono" }
+    pkgdown-nav-height: 80px
+    primary: "#3366CC"
+    body: "#fafafa"
+    info: "#f15521"
+    bg: "#fafafa"
+    fg: "#38424f"
+    headings-color: "#232323"
+
+navbar:
+  bg: primary
+  color: white
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search]
+
+reference:
+  - title: Page
+    desc: Build a complete HTML page with htmx support.
+    contents:
+      - hx_page
+      - hx_head
+      - hx_serve_assets
+
+  - title: Inputs
+    desc: Interactive input components wired to htmx requests.
+    contents:
+      - hx_button
+      - hx_select_input
+      - hx_slider_input
+
+  - title: Table
+    desc: Generate and update HTML tables via htmx swaps.
+    contents:
+      - hx_table
+      - hx_table_rows
+
+  - title: htmx modifiers
+    desc: Add or modify htmx attributes on any HTML element.
+    contents:
+      - hx_set
+
+  - title: Server
+    desc: Server-side utilities for handling htmx requests.
+    contents:
+      - htmxr_is_htmx
+
+  - title: Developer tools
+    desc: Helpers for running and exploring built-in examples.
+    contents:
+      - hx_run_example
+
+footer:
+  structure:
+    left: thinkr
+    right: [hyperverse-r]
+  components:
+    thinkr: <a href="https://thinkr.fr/" target="_blank">© ThinkR - A French company of R experts</a>
+    hyperverse-r: <a href="https://github.com/hyperverse-r" target="_blank">Explore the hyperverse</a>
