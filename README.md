@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# htmxr
+# htmxr <a href="https://hyperverse-r.github.io/htmxr/"><img src="man/figures/logo.png" align="right" height="138" alt="htmxr website" /></a>
 
 <!-- badges: start -->
 
