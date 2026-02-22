@@ -39,7 +39,7 @@ hx_table(
 
   Optional data frame. If provided, rows are rendered in the `<tbody>`
   via
-  [`hx_table_rows()`](https://thinkr-open.github.io/htmxr/reference/hx_table_rows.md).
+  [`hx_table_rows()`](https://hyperverse-r.github.io/htmxr/reference/hx_table_rows.md).
   If `NULL`, the `<tbody>` is empty.
 
 - id:
@@ -55,7 +55,7 @@ hx_table(
 - col_classes:
 
   Named list of CSS classes for `<td>` cells, passed to
-  [`hx_table_rows()`](https://thinkr-open.github.io/htmxr/reference/hx_table_rows.md)
+  [`hx_table_rows()`](https://hyperverse-r.github.io/htmxr/reference/hx_table_rows.md)
   when `data` is provided.
 
 - class:

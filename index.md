@@ -4,14 +4,14 @@
 
 [htmx](https://htmx.org) handles client-side interactions via HTML
 attributes. [plumber2](https://plumber2.posit.co) handles R endpoints
-server-side. [htmxr](https://github.com/thinkr-open/htmxr) bridges the
+server-side. [htmxr](https://hyperverse-r.github.io/htmxr/) bridges the
 two with R helpers that generate the right HTML and wire everything
 together.
 
 ## Installation
 
 ``` r
-pak::pak("thinkr-open/htmxr")
+pak::pak("hyperverse-r/htmxr")
 ```
 
 ## How it works
@@ -26,17 +26,18 @@ full page reload.
 ## Example — Old Faithful
 
 The `hello` example ships with
-[htmxr](https://github.com/thinkr-open/htmxr). It reproduces the classic
-Old Faithful histogram with a slider to control the number of bins.
+[htmxr](https://hyperverse-r.github.io/htmxr/). It reproduces the
+classic Old Faithful histogram with a slider to control the number of
+bins.
 
 ### The page
 
 The `GET /` endpoint returns a full HTML page built with
-[`hx_page()`](https://thinkr-open.github.io/htmxr/reference/hx_page.md)
+[`hx_page()`](https://hyperverse-r.github.io/htmxr/reference/hx_page.md)
 and
-[`hx_head()`](https://thinkr-open.github.io/htmxr/reference/hx_head.md).
+[`hx_head()`](https://hyperverse-r.github.io/htmxr/reference/hx_head.md).
 The slider is created with
-[`hx_slider_input()`](https://thinkr-open.github.io/htmxr/reference/hx_slider_input.md),
+[`hx_slider_input()`](https://hyperverse-r.github.io/htmxr/reference/hx_slider_input.md),
 which generates a `<input type="range">` wired to htmx attributes.
 
 ``` r
@@ -101,11 +102,11 @@ hx_run_example("hello")
 
 ## Design philosophy
 
-[htmxr](https://github.com/thinkr-open/htmxr) is built around a few
+[htmxr](https://hyperverse-r.github.io/htmxr/) is built around a few
 explicit constraints:
 
 - **Primitives, not a framework** —
-  [htmxr](https://github.com/thinkr-open/htmxr) provides low-level
+  [htmxr](https://hyperverse-r.github.io/htmxr/) provides low-level
   building blocks. It doesn’t impose a page structure, a routing
   convention, or an application model. You compose your own app from
   small, predictable pieces.
@@ -115,7 +116,7 @@ explicit constraints:
   reactivity graph, no virtual DOM. What you write in R is what lands in
   the browser.
 
-- **CSS-agnostic** — [htmxr](https://github.com/thinkr-open/htmxr)
+- **CSS-agnostic** — [htmxr](https://hyperverse-r.github.io/htmxr/)
   doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, plain
   CSS, or nothing at all.
 
@@ -124,6 +125,12 @@ explicit constraints:
   application code.
 
 - **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
-  directly from [htmxr](https://github.com/thinkr-open/htmxr), so you
+  directly from [htmxr](https://hyperverse-r.github.io/htmxr/), so you
   don’t need to load [htmltools](https://github.com/rstudio/htmltools)
   separately.
+
+## Code of Conduct
+
+Please note that the htmxr project is released with a [Contributor Code
+of Conduct](https://hyperverse-r.github.io/htmxr/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

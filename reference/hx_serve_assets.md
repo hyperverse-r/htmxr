@@ -18,3 +18,12 @@ hx_serve_assets(api)
 ## Value
 
 the API object (modified, for piping)
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+  plumber2::api() |>
+    hx_serve_assets()
+} # }
+```

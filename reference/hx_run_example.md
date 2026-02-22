@@ -23,3 +23,12 @@ hx_run_example(example = NULL, port = 8080)
 
 Called for side effects. When `example` is `NULL`, returns the available
 example names invisibly. Otherwise does not return (the server blocks).
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+  hx_run_example()         # list available examples
+  hx_run_example("hello")  # run the hello example
+} # }
+```

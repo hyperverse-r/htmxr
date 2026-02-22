@@ -4,14 +4,14 @@
 
 [htmx](https://htmx.org) handles client-side interactions via HTML
 attributes. [plumber2](https://plumber2.posit.co) handles R endpoints
-server-side. [htmxr](https://github.com/thinkr-open/htmxr) bridges the
+server-side. [htmxr](https://hyperverse-r.github.io/htmxr/) bridges the
 two with R helpers that generate the right HTML and wire everything
 together.
 
 ## Installation
 
 ``` r
-pak::pak("thinkr-open/htmxr")
+pak::pak("hyperverse-r/htmxr")
 ```
 
 ## How it works
@@ -26,17 +26,18 @@ full page reload.
 ## Example — Old Faithful
 
 The `hello` example ships with
-[htmxr](https://github.com/thinkr-open/htmxr). It reproduces the classic
-Old Faithful histogram with a slider to control the number of bins.
+[htmxr](https://hyperverse-r.github.io/htmxr/). It reproduces the
+classic Old Faithful histogram with a slider to control the number of
+bins.
 
 ### The page
 
 The `GET /` endpoint returns a full HTML page built with
-[`hx_page()`](https://thinkr-open.github.io/htmxr/reference/hx_page.md)
+[`hx_page()`](https://hyperverse-r.github.io/htmxr/reference/hx_page.md)
 and
-[`hx_head()`](https://thinkr-open.github.io/htmxr/reference/hx_head.md).
+[`hx_head()`](https://hyperverse-r.github.io/htmxr/reference/hx_head.md).
 The slider is created with
-[`hx_slider_input()`](https://thinkr-open.github.io/htmxr/reference/hx_slider_input.md),
+[`hx_slider_input()`](https://hyperverse-r.github.io/htmxr/reference/hx_slider_input.md),
 which generates a `<input type="range">` wired to htmx attributes.
 
 ``` r
@@ -101,11 +102,11 @@ hx_run_example("hello")
 
 ## Design philosophy
 
-[htmxr](https://github.com/thinkr-open/htmxr) is built around a few
+[htmxr](https://hyperverse-r.github.io/htmxr/) is built around a few
 explicit constraints:
 
 - **Primitives, not a framework** —
-  [htmxr](https://github.com/thinkr-open/htmxr) provides low-level
+  [htmxr](https://hyperverse-r.github.io/htmxr/) provides low-level
   building blocks. It doesn’t impose a page structure, a routing
   convention, or an application model. You compose your own app from
   small, predictable pieces.
@@ -115,7 +116,7 @@ explicit constraints:
   reactivity graph, no virtual DOM. What you write in R is what lands in
   the browser.
 
-- **CSS-agnostic** — [htmxr](https://github.com/thinkr-open/htmxr)
+- **CSS-agnostic** — [htmxr](https://hyperverse-r.github.io/htmxr/)
   doesn’t depend on any CSS framework. Use Bootstrap, Tailwind, plain
   CSS, or nothing at all.
 
@@ -124,34 +125,75 @@ explicit constraints:
   application code.
 
 - **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
-  directly from [htmxr](https://github.com/thinkr-open/htmxr), so you
+  directly from [htmxr](https://hyperverse-r.github.io/htmxr/), so you
   don’t need to load [htmltools](https://github.com/rstudio/htmltools)
   separately.
 
+## Code of Conduct
+
+Please note that the htmxr project is released with a [Contributor Code
+of Conduct](https://hyperverse-r.github.io/htmxr/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
 # Package index
 
-## All functions
+## Page
 
-- [`htmxr_is_htmx()`](https://thinkr-open.github.io/htmxr/reference/htmxr_is_htmx.md)
-  : Detect if a request comes from htmx
-- [`hx_button()`](https://thinkr-open.github.io/htmxr/reference/hx_button.md)
-  : Button element
-- [`hx_head()`](https://thinkr-open.github.io/htmxr/reference/hx_head.md)
-  : Specify additional head elements for an htmxr page
-- [`hx_page()`](https://thinkr-open.github.io/htmxr/reference/hx_page.md)
+Build a complete HTML page with htmx support.
+
+- [`hx_page()`](https://hyperverse-r.github.io/htmxr/reference/hx_page.md)
   : Generate a complete HTML page with htmx
-- [`hx_run_example()`](https://thinkr-open.github.io/htmxr/reference/hx_run_example.md)
-  : Run an htmxr example
-- [`hx_select_input()`](https://thinkr-open.github.io/htmxr/reference/hx_select_input.md)
-  : Select input
-- [`hx_serve_assets()`](https://thinkr-open.github.io/htmxr/reference/hx_serve_assets.md)
+- [`hx_head()`](https://hyperverse-r.github.io/htmxr/reference/hx_head.md)
+  : Specify additional head elements for an htmxr page
+- [`hx_serve_assets()`](https://hyperverse-r.github.io/htmxr/reference/hx_serve_assets.md)
   : Serve htmxr static assets
-- [`hx_set()`](https://thinkr-open.github.io/htmxr/reference/hx_set.md)
-  : Add htmx attributes to any HTML tag
-- [`hx_slider_input()`](https://thinkr-open.github.io/htmxr/reference/hx_slider_input.md)
+
+## Inputs
+
+Interactive input components wired to htmx requests.
+
+- [`hx_button()`](https://hyperverse-r.github.io/htmxr/reference/hx_button.md)
+  : Button element
+- [`hx_select_input()`](https://hyperverse-r.github.io/htmxr/reference/hx_select_input.md)
+  : Select input
+- [`hx_slider_input()`](https://hyperverse-r.github.io/htmxr/reference/hx_slider_input.md)
   : Slider input
-- [`hx_table()`](https://thinkr-open.github.io/htmxr/reference/hx_table.md)
+
+## Table
+
+Generate and update HTML tables via htmx swaps.
+
+- [`hx_table()`](https://hyperverse-r.github.io/htmxr/reference/hx_table.md)
   : Table with htmx-powered tbody
-- [`hx_table_rows()`](https://thinkr-open.github.io/htmxr/reference/hx_table_rows.md)
+- [`hx_table_rows()`](https://hyperverse-r.github.io/htmxr/reference/hx_table_rows.md)
   : Table rows fragment
 
+## htmx modifiers
+
+Add or modify htmx attributes on any HTML element.
+
+- [`hx_set()`](https://hyperverse-r.github.io/htmxr/reference/hx_set.md)
+  : Add htmx attributes to any HTML tag
+
+## Server
+
+Server-side utilities for handling htmx requests.
+
+- [`htmxr_is_htmx()`](https://hyperverse-r.github.io/htmxr/reference/htmxr_is_htmx.md)
+  : Detect if a request comes from htmx
+
+## Developer tools
+
+Helpers for running and exploring built-in examples.
+
+- [`hx_run_example()`](https://hyperverse-r.github.io/htmxr/reference/hx_run_example.md)
+  : Run an htmxr example
+
+# Articles
+
+### All vignettes
+
+- [Getting Started with
+  htmxr](https://hyperverse-r.github.io/htmxr/articles/getting-started.md):
+- [Why
+  htmxr?](https://hyperverse-r.github.io/htmxr/articles/why-htmxr.md):
