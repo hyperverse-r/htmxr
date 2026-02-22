@@ -130,3 +130,9 @@ hx_run_example("hello")
 -   **htmltools re-exported** — `tags`, `div`, `p`, etc. are available
     directly from `{htmxr}`, so you don’t need to load `{htmltools}`
     separately.
+
+## Code of Conduct
+
+Please note that the htmxr project is released with a [Contributor Code
+of Conduct](https://hyperverse-r.github.io/htmxr/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

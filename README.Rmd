@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-CHECK](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml)
-[![pkgdown](https://github.com/hyperverse-r/htmxr/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 > Build modern web applications in R — without writing JavaScript.
@@ -136,3 +135,7 @@ hx_run_example("hello")
 
 - **htmltools re-exported** — `tags`, `div`, `p`, etc. are available directly from
   `{htmxr}`, so you don't need to load `{htmltools}` separately.
+
+ ## Code of Conduct
+
+  Please note that the htmxr project is released with a [Contributor Code of Conduct](https://hyperverse-r.github.io/htmxr/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
