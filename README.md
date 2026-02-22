@@ -8,6 +8,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-CHECK](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/hyperverse-r/htmxr/graph/badge.svg)](https://app.codecov.io/gh/hyperverse-r/htmxr)
 <!-- badges: end -->
 
 > Build modern web applications in R — without writing JavaScript.
