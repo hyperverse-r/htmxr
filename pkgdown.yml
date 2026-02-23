@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
   why-htmxr: why-htmxr.html
-last_built: 2026-02-23T10:03Z
+last_built: 2026-02-23T18:00Z
 urls:
   reference: https://hyperverse-r.github.io/htmxr/reference
   article: https://hyperverse-r.github.io/htmxr/articles
