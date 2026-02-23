@@ -9,6 +9,8 @@ Description: A lightweight framework for building server-driven web
     endpoints. Build interactive dashboards and data applications without
     writing JavaScript, using familiar R patterns inspired by 'Shiny'.
 License: MIT + file LICENSE
+Depends:
+    R (>= 4.1.0)
 URL: https://hyperverse-r.github.io/htmxr/,
     https://github.com/hyperverse-r/htmxr
 BugReports: https://github.com/hyperverse-r/htmxr/issues
