@@ -12,7 +12,7 @@ page without a full reload.
 
 **htmxr** is the R wrapper: it provides `htmltools`-based primitives to
 generate htmx attributes and build complete pages, backed by a
-[plumber2](https://github.com/andersnotes/plumber2) server.
+[plumber2](https://plumber2.posit.co/) server.
 
 ------------------------------------------------------------------------
 
@@ -25,8 +25,8 @@ install.packages("htmxr")
 pak::pak("hyperverse-r/htmxr")
 ```
 
-htmxr uses [plumber2](https://github.com/andersnotes/plumber2) as its
-HTTP server — make sure it is installed alongside htmxr.
+htmxr uses [plumber2](https://plumber2.posit.co/) as its HTTP server —
+make sure it is installed alongside htmxr.
 
 ------------------------------------------------------------------------
 
