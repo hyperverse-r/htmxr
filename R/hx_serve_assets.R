@@ -10,10 +10,8 @@
 #' @return the API object (modified, for piping)
 #'
 #' @examples
-#' \dontrun{
-#'   plumber2::api() |>
-#'     hx_serve_assets()
-#' }
+#' plumber2::api() |>
+#'   hx_serve_assets()
 #'
 #' @export
 hx_serve_assets <- function(api) {

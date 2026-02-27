@@ -14,6 +14,26 @@ Unable to verify current time.
 
 ---
 
+## Resubmission — 2026-02-27
+
+This is a resubmission addressing the notes raised during the second CRAN review:
+
+1. **Unquoted software names in DESCRIPTION** — `R` and `JavaScript` are now quoted
+   with single quotes in the `Description` field as per CRAN conventions.
+
+2. **References in DESCRIPTION** — Added a reference to the 'htmx' project website
+   (`<https://htmx.org>`) in the `Description` field. No DOI or ISBN is applicable
+   as this package wraps a JavaScript library, not a statistical method.
+
+3. **`\dontrun{}` in examples** — Per CRAN guidelines:
+   - `hx_serve_assets()`: example is now fully executable (configures an API object,
+     does not start a server).
+   - `hx_run_example()`: `hx_run_example()` without arguments is now fully executable
+     (lists available examples). The blocking call `hx_run_example("hello")` is wrapped
+     in `if(interactive()){}` as it starts a server that never returns non-interactively.
+
+---
+
 ## Resubmission — 2026-02-23
 
 This is a resubmission addressing the notes raised during the first CRAN review:
