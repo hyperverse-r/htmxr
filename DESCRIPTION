@@ -8,7 +8,7 @@ Description: A lightweight framework for building server-driven web
     partial page updates with the power of 'plumber2' for non-blocking
     HTTP endpoints. Build interactive dashboards and data applications
     without writing 'JavaScript', using familiar 'R' patterns inspired by
-    'Shiny'.
+    'Shiny'. For more information on 'htmx', see <https://htmx.org>.
 License: MIT + file LICENSE
 URL: https://hyperverse-r.github.io/htmxr/,
     https://github.com/hyperverse-r/htmxr
