@@ -17,9 +17,7 @@ Configures a plumber2 API to serve htmxr's static assets
 (htmx JavaScript library) at \verb{/htmxr/assets/}.
 }
 \examples{
-\donttest{
-  plumber2::api() |>
-    hx_serve_assets()
-}
+plumber2::api() |>
+  hx_serve_assets()
 
 }
