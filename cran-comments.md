@@ -14,6 +14,19 @@ Unable to verify current time.
 
 ---
 
+## Resubmission — 2026-02-27
+
+This is a resubmission addressing the notes raised during the second CRAN review:
+
+1. **Unquoted software names in DESCRIPTION** — `R` and `JavaScript` are now quoted
+   with single quotes in the `Description` field as per CRAN conventions.
+
+2. **`\dontrun{}` in examples** — Replaced `\dontrun{}` with `\donttest{}` in
+   `hx_run_example()` and `hx_serve_assets()`. These examples start a blocking HTTP
+   server and cannot complete in a reasonable time during automated checks.
+
+---
+
 ## Resubmission — 2026-02-23
 
 This is a resubmission addressing the notes raised during the first CRAN review:

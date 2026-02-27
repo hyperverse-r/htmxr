@@ -4,10 +4,10 @@ Version: 0.1.1
 Authors@R:
     person("Arthur", "Bréant", , "arthur@thinkr.fr", role = c("aut", "cre"))
 Description: A lightweight framework for building server-driven web
-    applications in R. 'htmxr' combines the simplicity of 'htmx' for
+    applications in 'R'. 'htmxr' combines the simplicity of 'htmx' for
     partial page updates with the power of 'plumber2' for non-blocking
     HTTP endpoints. Build interactive dashboards and data applications
-    without writing JavaScript, using familiar R patterns inspired by
+    without writing 'JavaScript', using familiar 'R' patterns inspired by
     'Shiny'.
 License: MIT + file LICENSE
 URL: https://hyperverse-r.github.io/htmxr/,

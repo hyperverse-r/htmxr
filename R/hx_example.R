@@ -14,7 +14,7 @@
 #'   blocks).
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   hx_run_example()         # list available examples
 #'   hx_run_example("hello")  # run the hello example
 #' }

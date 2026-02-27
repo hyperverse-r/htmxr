@@ -10,7 +10,7 @@
 #' @return the API object (modified, for piping)
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   plumber2::api() |>
 #'     hx_serve_assets()
 #' }

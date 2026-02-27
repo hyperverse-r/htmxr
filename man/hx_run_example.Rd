@@ -22,7 +22,7 @@ Launches an example API that demonstrates htmxr features.
 Call \code{hx_run_example()} without arguments to list available examples.
 }
 \examples{
-\dontrun{
+\donttest{
   hx_run_example()         # list available examples
   hx_run_example("hello")  # run the hello example
 }
