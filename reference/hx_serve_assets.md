@@ -22,8 +22,9 @@ the API object (modified, for piping)
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  plumber2::api() |>
-    hx_serve_assets()
-} # }
+plumber2::api() |>
+  hx_serve_assets()
+#> ── A plumber server ────────────────────────────────────────────────────────────
+#> Serving on http://127.0.0.1:8080
+#> Currently not running
 ```

@@ -27,8 +27,10 @@ example names invisibly. Otherwise does not return (the server blocks).
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-  hx_run_example()         # list available examples
-  hx_run_example("hello")  # run the hello example
-} # }
+hx_run_example() # list available examples
+#> Available examples: hello, infinity-scroll, json-endpoint, select-input
+#> Run one with: hx_run_example("hello")
+if (interactive()) {
+  hx_run_example("hello") # run the hello example
+}
 ```
