@@ -21,14 +21,9 @@ Imports:
 Suggests:
     dplyr,
     ggplot2,
-    knitr,
-    pak,
     purrr,
-    rmarkdown,
     svglite,
     testthat (>= 3.0.0)
-VignetteBuilder: 
-    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
