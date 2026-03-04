@@ -11,6 +11,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R-CMD-CHECK](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hyperverse-r/htmxr/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/hyperverse-r/htmxr/graph/badge.svg)](https://app.codecov.io/gh/hyperverse-r/htmxr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/htmxr)](https://cran.r-project.org/package=htmxr)
+[![downloads
+monthly](https://cranlogs.r-pkg.org/badges/htmxr?color=black)](https://CRAN.R-project.org/package=htmxr)
+[![downloads
+total](https://cranlogs.r-pkg.org/badges/grand-total/htmxr?color=black)](https://CRAN.R-project.org/package=htmxr)
 <!-- badges: end -->
 
 > Build modern web applications in R — without writing JavaScript.
@@ -23,6 +29,9 @@ right HTML and wire everything together.
 ## Installation
 
 ``` r
+install.packages("htmxr")
+
+# or install the development version from GitHub:
 pak::pak("hyperverse-r/htmxr")
 ```
 
