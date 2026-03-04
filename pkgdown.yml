@@ -1,10 +1,8 @@
 pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
-articles:
-  getting-started: getting-started.html
-  why-htmxr: why-htmxr.html
-last_built: 2026-03-04T11:29Z
+articles: {}
+last_built: 2026-03-04T11:56Z
 urls:
   reference: https://hyperverse-r.github.io/htmxr/reference
   article: https://hyperverse-r.github.io/htmxr/articles

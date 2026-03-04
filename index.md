@@ -11,6 +11,9 @@ together.
 ## Installation
 
 ``` r
+install.packages("htmxr")
+
+# or install the development version from GitHub:
 pak::pak("hyperverse-r/htmxr")
 ```
 

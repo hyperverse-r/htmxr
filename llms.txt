@@ -11,6 +11,9 @@ together.
 ## Installation
 
 ``` r
+install.packages("htmxr")
+
+# or install the development version from GitHub:
 pak::pak("hyperverse-r/htmxr")
 ```
 
@@ -189,11 +192,3 @@ Helpers for running and exploring built-in examples.
 - [`hx_run_example()`](https://hyperverse-r.github.io/htmxr/reference/hx_run_example.md)
   : Run an htmxr example
 
-# Articles
-
-### All vignettes
-
-- [Getting Started with
-  htmxr](https://hyperverse-r.github.io/htmxr/articles/getting-started.md):
-- [Why
-  htmxr?](https://hyperverse-r.github.io/htmxr/articles/why-htmxr.md):
