@@ -11,6 +11,9 @@
   background: RGBA(var(--bs-body-color-rgb), 0.1);
 }
 
+.navbar .nav-link, .navbar-brand { color: #f0f0f0 !important; }
+.navbar .nav-link:hover { color: #ffffff !important; }
+
 .text-danger {
   color: #fa7ae7 !important;
   background-color: #38424f;
