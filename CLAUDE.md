@@ -107,7 +107,11 @@ pas selon le dataset ou le domaine métier utilisé.
 
 - Fonctions préfixées `hx_` — pas `htmxr_`. Cette convention s'applique à
   toutes les fonctions exportées sans exception, y compris les helpers et les
-  wrappers.
+  wrappers (ex : `hx_is_htmx()`, pas `htmxr_is_htmx()`).
+- Ordre des paramètres des composants : `id` toujours en premier et **obligatoire**,
+  `label = NULL` en deuxième. Cohérent avec Shiny (`inputId` en premier) et entre
+  toutes les fonctions `hx_*` (ex : `hx_button(id, label = NULL)`,
+  `hx_select_input(id, label = NULL, choices)`).
 - Paramètres htmx : `get`, `post`, `target`, `swap`, `trigger`, `indicator`, `swap_oob`, `confirm`
 - Pas de `paste0()` pour construire du HTML — utiliser `htmltools::tags`
 

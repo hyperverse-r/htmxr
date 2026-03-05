@@ -5,8 +5,8 @@
 \title{Button element}
 \usage{
 hx_button(
-  label,
-  id = NULL,
+  id,
+  label = NULL,
   class = NULL,
   get = NULL,
   post = NULL,
@@ -20,9 +20,10 @@ hx_button(
 )
 }
 \arguments{
-\item{label}{Button label (text or HTML content).}
+\item{id}{Element id.}
 
-\item{id}{Optional element id.}
+\item{label}{Button label (text or HTML content). Pass \code{NULL} for icon-only
+buttons — in that case supply an \code{aria-label} via \code{...}.}
 
 \item{class}{Optional CSS class(es).}
 
@@ -52,12 +53,12 @@ Creates a \verb{<button>} element with optional htmx attributes.
 }
 \examples{
 # Simple button
-hx_button("Click me")
+hx_button("btn1", "Click me")
 
 # Button with htmx GET request
-hx_button("Load data", get = "/api/data", target = "#result")
+hx_button("load-btn", "Load data", get = "/api/data", target = "#result")
 
 # Button with confirmation
-hx_button("Delete", post = "/api/delete", confirm = "Are you sure?")
+hx_button("del-btn", "Delete", post = "/api/delete", confirm = "Are you sure?")
 
 }
