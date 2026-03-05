@@ -114,6 +114,7 @@ pas selon le dataset ou le domaine métier utilisé.
   `hx_select_input(id, label = NULL, choices)`).
 - Paramètres htmx : `get`, `post`, `target`, `swap`, `trigger`, `indicator`, `swap_oob`, `confirm`
 - Pas de `paste0()` pour construire du HTML — utiliser `htmltools::tags`
+- Dans les routes plumber2, le paramètre réponse **doit** s'appeler `response` et le paramètre requête `request` — ce sont les seuls noms reconnus pour l'injection automatique (documenté dans la vignette plumber2 "routing-and-input")
 
 
 ## Règles générales

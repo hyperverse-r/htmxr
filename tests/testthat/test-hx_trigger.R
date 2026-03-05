@@ -1,7 +1,7 @@
 make_res <- function() {
   headers <- list()
   list(
-    setHeader = function(name, value) headers[[name]] <<- value,
+    set_header = function(name, value) headers[[name]] <<- value,
     getHeader = function(name) headers[[name]]
   )
 }

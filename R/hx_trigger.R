@@ -4,7 +4,9 @@
 #' header to a plumber2 response, causing htmx to fire one or more client-side
 #' events after the response is received.
 #'
-#' @param res A plumber2 response object.
+#' @param response A plumber2 response object. The parameter **must** be named
+#'   `response` in route handlers — it is the only name plumber2 recognises for
+#'   injecting the response object.
 #' @param event One of:
 #'   - A **character string** — fires a single event: `"myEvent"`.
 #'   - A **character vector** — fires multiple events: `c("event1", "event2")`.
@@ -12,7 +14,7 @@
 #'     `list(showMessage = list(level = "info"), confetti = NULL)`.
 #'     Each name is an event; each value is its detail (use `NULL` for no detail).
 #'
-#' @return The response object `res`, invisibly.
+#' @return The response object `response`, invisibly.
 #'
 #' @details
 #' ## Timing variants
@@ -34,36 +36,36 @@
 #' @examples
 #' \dontrun{
 #' #* @post /submit
-#' function(res) {
+#' function(response) {
 #'   # Simple event
-#'   hx_trigger(res, "formSubmitted")
+#'   hx_trigger(response, "formSubmitted")
 #'
 #'   # Multiple events
-#'   hx_trigger(res, c("formSubmitted", "refresh"))
+#'   hx_trigger(response, c("formSubmitted", "refresh"))
 #'
 #'   # Event with detail payload
-#'   hx_trigger(res, list(showMessage = list(level = "info", text = "Saved!")))
+#'   hx_trigger(response, list(showMessage = list(level = "info", text = "Saved!")))
 #'
 #'   list(status = "ok")
 #' }
 #' }
 #'
 #' @export
-hx_trigger <- function(res, event) {
-  res$setHeader("HX-Trigger", .hx_trigger_value(event))
-  invisible(res)
+hx_trigger <- function(response, event) {
+  response$set_header("HX-Trigger", .hx_trigger_value(event))
+  invisible(response)
 }
 
 #' @rdname hx_trigger
 #' @export
-hx_trigger_after_swap <- function(res, event) {
-  res$setHeader("HX-Trigger-After-Swap", .hx_trigger_value(event))
-  invisible(res)
+hx_trigger_after_swap <- function(response, event) {
+  response$set_header("HX-Trigger-After-Swap", .hx_trigger_value(event))
+  invisible(response)
 }
 
 #' @rdname hx_trigger
 #' @export
-hx_trigger_after_settle <- function(res, event) {
-  res$setHeader("HX-Trigger-After-Settle", .hx_trigger_value(event))
-  invisible(res)
+hx_trigger_after_settle <- function(response, event) {
+  response$set_header("HX-Trigger-After-Settle", .hx_trigger_value(event))
+  invisible(response)
 }

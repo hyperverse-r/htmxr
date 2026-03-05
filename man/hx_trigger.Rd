@@ -6,14 +6,16 @@
 \alias{hx_trigger_after_settle}
 \title{Trigger client-side htmx events via response headers}
 \usage{
-hx_trigger(res, event)
+hx_trigger(response, event)
 
-hx_trigger_after_swap(res, event)
+hx_trigger_after_swap(response, event)
 
-hx_trigger_after_settle(res, event)
+hx_trigger_after_settle(response, event)
 }
 \arguments{
-\item{res}{A plumber2 response object.}
+\item{response}{A plumber2 response object. The parameter \strong{must} be named
+\code{response} in route handlers — it is the only name plumber2 recognises for
+injecting the response object.}
 
 \item{event}{One of:
 \itemize{
@@ -25,7 +27,7 @@ Each name is an event; each value is its detail (use \code{NULL} for no detail).
 }}
 }
 \value{
-The response object \code{res}, invisibly.
+The response object \code{response}, invisibly.
 }
 \description{
 Adds an \code{HX-Trigger}, \code{HX-Trigger-After-Swap}, or \code{HX-Trigger-After-Settle}
@@ -55,15 +57,15 @@ named lists of the above. No external dependency required.
 \examples{
 \dontrun{
 #* @post /submit
-function(res) {
+function(response) {
   # Simple event
-  hx_trigger(res, "formSubmitted")
+  hx_trigger(response, "formSubmitted")
 
   # Multiple events
-  hx_trigger(res, c("formSubmitted", "refresh"))
+  hx_trigger(response, c("formSubmitted", "refresh"))
 
   # Event with detail payload
-  hx_trigger(res, list(showMessage = list(level = "info", text = "Saved!")))
+  hx_trigger(response, list(showMessage = list(level = "info", text = "Saved!")))
 
   list(status = "ok")
 }
