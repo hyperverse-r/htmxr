@@ -72,7 +72,7 @@ function() {
           hx_table(
             columns = c("cut", "color", "clarity", "price"),
             col_labels = c("Cut", "Color", "Clarity", "Price"),
-            id = "tbody",
+            tbody_id = "tbody",
             class = "table table-striped table-hover mb-0",
             thead_class = "table-dark",
             get = "/rows",

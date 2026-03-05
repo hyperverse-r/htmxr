@@ -46,7 +46,7 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 #'   `<thead>` structure (required).
 #' @param data Optional data frame. If provided, rows are rendered in the
 #'   `<tbody>` via [hx_table_rows()]. If `NULL`, the `<tbody>` is empty.
-#' @param id `id` attribute applied to the `<tbody>`.
+#' @param tbody_id `id` attribute applied to the `<tbody>` — not the `<table>`.
 #' @param col_labels Labels for the `<thead>`. If `NULL`, column names are used
 #'   as-is. Can be a named vector (`c(price = "Price ($)")`) to override
 #'   specific columns, or an unnamed positional vector to replace all labels.
@@ -71,7 +71,7 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 #' hx_table(
 #'   columns = c("cut", "color", "price"),
 #'   col_labels = c("Cut", "Color", "Price"),
-#'   id = "tbody",
+#'   tbody_id = "tbody",
 #'   get = "/rows",
 #'   trigger = "load",
 #'   swap = "innerHTML"
@@ -85,7 +85,7 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 hx_table <- function(
   columns,
   data = NULL,
-  id = NULL,
+  tbody_id = NULL,
   col_labels = NULL,
   col_classes = NULL,
   class = NULL,
@@ -125,7 +125,7 @@ hx_table <- function(
   rows <- if (!is.null(data))
     hx_table_rows(data, columns = columns, col_classes = col_classes) else
     list()
-  tbody <- do.call(tags$tbody, c(list(id = id), rows)) |>
+  tbody <- do.call(tags$tbody, c(list(id = tbody_id), rows)) |>
     hx_set(
       get = get,
       post = post,

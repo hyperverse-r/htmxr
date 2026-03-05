@@ -7,7 +7,7 @@
 hx_table(
   columns,
   data = NULL,
-  id = NULL,
+  tbody_id = NULL,
   col_labels = NULL,
   col_classes = NULL,
   class = NULL,
@@ -30,7 +30,7 @@ hx_table(
 \item{data}{Optional data frame. If provided, rows are rendered in the
 \verb{<tbody>} via \code{\link[=hx_table_rows]{hx_table_rows()}}. If \code{NULL}, the \verb{<tbody>} is empty.}
 
-\item{id}{\code{id} attribute applied to the \verb{<tbody>}.}
+\item{tbody_id}{\code{id} attribute applied to the \verb{<tbody>} — not the \verb{<table>}.}
 
 \item{col_labels}{Labels for the \verb{<thead>}. If \code{NULL}, column names are used
 as-is. Can be a named vector (\code{c(price = "Price ($)")}) to override
@@ -75,7 +75,7 @@ is loaded lazily via htmx (e.g. \code{trigger = "load"}).
 hx_table(
   columns = c("cut", "color", "price"),
   col_labels = c("Cut", "Color", "Price"),
-  id = "tbody",
+  tbody_id = "tbody",
   get = "/rows",
   trigger = "load",
   swap = "innerHTML"
