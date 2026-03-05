@@ -61,8 +61,45 @@ test_that(".hx_to_json() serialises character vector as JSON array", {
   expect_equal(htmxr:::.hx_to_json(c("a", "b")), '["a","b"]')
 })
 
+test_that(".hx_to_json() errors on NA logical", {
+  expect_error(htmxr:::.hx_to_json(NA), "NA is not a valid JSON value")
+})
+
+test_that(".hx_to_json() errors on NA numeric", {
+  expect_error(
+    htmxr:::.hx_to_json(NA_real_),
+    "NA, NaN, and Inf are not valid JSON values"
+  )
+})
+
+test_that(".hx_to_json() errors on NaN", {
+  expect_error(
+    htmxr:::.hx_to_json(NaN),
+    "NA, NaN, and Inf are not valid JSON values"
+  )
+})
+
+test_that(".hx_to_json() errors on Inf", {
+  expect_error(
+    htmxr:::.hx_to_json(Inf),
+    "NA, NaN, and Inf are not valid JSON values"
+  )
+  expect_error(
+    htmxr:::.hx_to_json(-Inf),
+    "NA, NaN, and Inf are not valid JSON values"
+  )
+})
+
 test_that(".hx_to_json() errors on unnamed list", {
   expect_error(htmxr:::.hx_to_json(list(1, 2)), "Unsupported value type")
+})
+
+test_that(".hx_to_json() errors on partially-named list", {
+  expect_error(htmxr:::.hx_to_json(list(a = 1, 2)), "Unsupported value type")
+})
+
+test_that(".hx_trigger_value() errors on partially-named list", {
+  expect_error(htmxr:::.hx_trigger_value(list(a = 1, 2)), "`event` must be")
 })
 
 test_that(".hx_to_json() errors on unsupported atomic type", {

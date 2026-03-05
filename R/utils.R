@@ -1,10 +1,14 @@
 # Internal utilities -----------------------------------------------------------
 
+.hx_all_named <- function(x) {
+  !is.null(names(x)) && all(!is.na(names(x)) & nzchar(names(x)))
+}
+
 #' @noRd
 .hx_trigger_value <- function(event) {
   if (is.character(event)) {
     paste(event, collapse = ", ")
-  } else if (is.list(event) && !is.null(names(event))) {
+  } else if (is.list(event) && .hx_all_named(event)) {
     pairs <- mapply(
       function(k, v)
         paste0('"', .hx_escape_json_string(k), '":', .hx_to_json(v)),
@@ -23,8 +27,19 @@
 #' @noRd
 .hx_to_json <- function(x) {
   if (is.null(x)) return("null")
-  if (is.logical(x) && length(x) == 1L) return(if (x) "true" else "false")
-  if (is.numeric(x) && length(x) == 1L) return(as.character(x))
+  if (is.logical(x) && length(x) == 1L) {
+    if (is.na(x))
+      stop("NA is not a valid JSON value in event details.", call. = FALSE)
+    return(if (x) "true" else "false")
+  }
+  if (is.numeric(x) && length(x) == 1L) {
+    if (!is.finite(x))
+      stop(
+        "NA, NaN, and Inf are not valid JSON values in event details.",
+        call. = FALSE
+      )
+    return(as.character(x))
+  }
   if (is.character(x) && length(x) == 1L) {
     return(paste0('"', .hx_escape_json_string(x), '"'))
   }
@@ -36,7 +51,7 @@
       "]"
     ))
   }
-  if (is.list(x) && !is.null(names(x))) {
+  if (is.list(x) && .hx_all_named(x)) {
     pairs <- mapply(
       function(k, v)
         paste0('"', .hx_escape_json_string(k), '":', .hx_to_json(v)),
