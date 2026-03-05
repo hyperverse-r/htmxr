@@ -31,8 +31,22 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
   - Exemple : `inst/examples/crud-delete/api.R` (bouton supprimer ligne → DELETE → outerHTML swap)
 
 ### Backlog
-- Exemple `sortable-table` : tri par colonne via `hx-get` sur `<th>`, zéro JS
-- Exemple `report-download` : génération rapport Rmd async (`@async` plumber2) + lien téléchargement
+
+**Inputs manquants** (par rapport à Shiny) :
+- `hx_text_input()` — `<input type="text">`
+- `hx_numeric_input()` — `<input type="number">`
+- `hx_textarea_input()` — `<textarea>`
+- `hx_radio_input()` — boutons radio
+- `hx_checkbox_input()` — case à cocher unique
+- `hx_checkbox_group_input()` — groupe de cases
+- `hx_date_input()` — `<input type="date">`
+- `hx_file_input()` — upload fichier
+
+**Exemples** :
+- `sortable-table` : tri par colonne via `hx-get` sur `<th>`, zéro JS
+- `report-download` : génération rapport Rmd async (`@async` plumber2) + lien téléchargement
+
+**Divers** :
 - Valider `target` CSS selector silencieux (ex: `"plot"` au lieu de `"#plot"` → aucune erreur)
 
 ### Décisions architecturales
