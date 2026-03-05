@@ -20,7 +20,9 @@ function() {
     div(
       class = "container py-5",
       style = "max-width: 500px",
-      # Toast area — empty on load, populated when "notified" event fires.
+      # Listener: fetches GET /toast whenever the "notified" event bubbles
+      # through <body>. "from:body" is required because the event fires on the
+      # button, not on this div — so we listen at the body level.
       div(id = "toast") |>
         hx_set(
           get = "/toast",
@@ -45,7 +47,9 @@ function() {
 #* @parser none
 #* @serializer html
 function(response) {
-  # Fire the event — the toast area reacts independently.
+  # Fires the "notified" event in the browser — the toast div above catches it
+  # and makes its own GET /toast request.
+  # No HTML is sent by hx_trigger() itself.
   hx_trigger(response, "notified")
   as.character(tags$p(class = "text-success fw-bold", "Action completed."))
 }
@@ -54,9 +58,23 @@ function(response) {
 #* @parser none
 #* @serializer html
 function() {
-  as.character(tags$div(
-    class = "alert alert-success mb-4",
-    tags$strong("Done!"),
-    paste(" Triggered at", format(Sys.time(), "%H:%M:%S"), ".")
+  # Returns the toast HTML fragment — called by the toast div when it receives
+  # the "notified" event, not directly by the button POST.
+  # The CSS animation fades the toast out after 3s — no JS required.
+  as.character(tagList(
+    tags$style(
+      "
+      @keyframes fadeOut {
+        0%, 70% { opacity: 1; }
+        100%     { opacity: 0; }
+      }
+      .toast-auto { animation: fadeOut 3s ease forwards; }
+    "
+    ),
+    tags$div(
+      class = "alert alert-success mb-4 toast-auto",
+      tags$strong("Done!"),
+      paste(" Triggered at", format(Sys.time(), "%H:%M:%S"), ".")
+    )
   ))
 }

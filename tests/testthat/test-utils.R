@@ -47,6 +47,20 @@ test_that(".hx_to_json() handles NULL values inside a list", {
   )
 })
 
+test_that(".hx_to_json() escapes newline, carriage return, tab in strings", {
+  expect_equal(htmxr:::.hx_to_json("a\nb"), '"a\\nb"')
+  expect_equal(htmxr:::.hx_to_json("a\rb"), '"a\\rb"')
+  expect_equal(htmxr:::.hx_to_json("a\tb"), '"a\\tb"')
+})
+
+test_that(".hx_to_json() serialises integer vector as JSON array", {
+  expect_equal(htmxr:::.hx_to_json(c(1L, 2L, 3L)), "[1,2,3]")
+})
+
+test_that(".hx_to_json() serialises character vector as JSON array", {
+  expect_equal(htmxr:::.hx_to_json(c("a", "b")), '["a","b"]')
+})
+
 test_that(".hx_to_json() errors on unnamed list", {
   expect_error(htmxr:::.hx_to_json(list(1, 2)), "Unsupported value type")
 })
@@ -55,6 +69,15 @@ test_that(".hx_to_json() errors on unsupported atomic type", {
   expect_error(
     htmxr:::.hx_to_json(as.Date("2024-01-01")),
     "Unsupported value type"
+  )
+})
+
+# .hx_escape_json_string() -----------------------------------------------------
+
+test_that(".hx_escape_json_string() escapes quotes in event name keys", {
+  expect_equal(
+    htmxr:::.hx_trigger_value(list(`say "hi"` = NULL)),
+    '{"say \\"hi\\"":null}'
   )
 })
 

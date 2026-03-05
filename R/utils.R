@@ -6,7 +6,8 @@
     paste(event, collapse = ", ")
   } else if (is.list(event) && !is.null(names(event))) {
     pairs <- mapply(
-      function(k, v) paste0('"', k, '":', .hx_to_json(v)),
+      function(k, v)
+        paste0('"', .hx_escape_json_string(k), '":', .hx_to_json(v)),
       names(event),
       event,
       SIMPLIFY = FALSE
@@ -18,20 +19,27 @@
 }
 
 # Minimal JSON serialiser for htmx event details.
-# Supports: NULL, single logical, single numeric, single character, named list.
+# Supports: NULL, logical, numeric, character, atomic vector (→ array), named list.
 #' @noRd
 .hx_to_json <- function(x) {
   if (is.null(x)) return("null")
   if (is.logical(x) && length(x) == 1L) return(if (x) "true" else "false")
   if (is.numeric(x) && length(x) == 1L) return(as.character(x))
   if (is.character(x) && length(x) == 1L) {
-    x <- gsub("\\\\", "\\\\\\\\", x)
-    x <- gsub('"', '\\"', x, fixed = TRUE)
-    return(paste0('"', x, '"'))
+    return(paste0('"', .hx_escape_json_string(x), '"'))
+  }
+  # Atomic vectors of length > 1 → JSON array
+  if (is.atomic(x) && length(x) > 1L) {
+    return(paste0(
+      "[",
+      paste(vapply(x, .hx_to_json, character(1L)), collapse = ","),
+      "]"
+    ))
   }
   if (is.list(x) && !is.null(names(x))) {
     pairs <- mapply(
-      function(k, v) paste0('"', k, '":', .hx_to_json(v)),
+      function(k, v)
+        paste0('"', .hx_escape_json_string(k), '":', .hx_to_json(v)),
       names(x),
       x,
       SIMPLIFY = FALSE
@@ -39,4 +47,14 @@
     return(paste0("{", paste(unlist(pairs), collapse = ","), "}"))
   }
   stop("Unsupported value type in event detail: ", class(x)[1L], call. = FALSE)
+}
+
+#' @noRd
+.hx_escape_json_string <- function(x) {
+  x <- gsub("\\\\", "\\\\\\\\", x)
+  x <- gsub('"', '\\"', x, fixed = TRUE)
+  x <- gsub("\n", "\\n", x, fixed = TRUE)
+  x <- gsub("\r", "\\r", x, fixed = TRUE)
+  x <- gsub("\t", "\\t", x, fixed = TRUE)
+  x
 }
