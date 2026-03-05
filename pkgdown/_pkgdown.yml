@@ -59,7 +59,7 @@ reference:
   - title: Server
     desc: Server-side utilities for handling htmx requests.
     contents:
-      - htmxr_is_htmx
+      - hx_is_htmx
 
   - title: Developer tools
     desc: Helpers for running and exploring built-in examples.
