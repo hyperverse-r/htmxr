@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/hyperverse-r/htmxr/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/hyperverse-r/htmxr/blob/v0.2.0/DESCRIPTION)
 
 Bréant A (2026). *htmxr: Build Modern Web Applications with 'htmx' and
 'plumber2'*. R package version 0.2.0,
