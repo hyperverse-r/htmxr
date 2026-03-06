@@ -2,8 +2,9 @@
 #'
 #' Creates a `<button>` element with optional htmx attributes.
 #'
-#' @param label Button label (text or HTML content).
-#' @param id Optional element id.
+#' @param id Element id.
+#' @param label Button label (text or HTML content). Pass `NULL` for icon-only
+#'   buttons — in that case supply an `aria-label` via `...`.
 #' @param class Optional CSS class(es).
 #' @param get URL for `hx-get`.
 #' @param post URL for `hx-post`.
@@ -19,18 +20,18 @@
 #'
 #' @examples
 #' # Simple button
-#' hx_button("Click me")
+#' hx_button("btn1", "Click me")
 #'
 #' # Button with htmx GET request
-#' hx_button("Load data", get = "/api/data", target = "#result")
+#' hx_button("load-btn", "Load data", get = "/api/data", target = "#result")
 #'
 #' # Button with confirmation
-#' hx_button("Delete", post = "/api/delete", confirm = "Are you sure?")
+#' hx_button("del-btn", "Delete", post = "/api/delete", confirm = "Are you sure?")
 #'
 #' @export
 hx_button <- function(
-  label,
-  id = NULL,
+  id,
+  label = NULL,
   class = NULL,
   get = NULL,
   post = NULL,

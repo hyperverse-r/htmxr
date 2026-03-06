@@ -102,8 +102,8 @@ test_that("hx_table() errors on unknown col_labels names", {
   )
 })
 
-test_that("hx_table() tbody has the provided id", {
-  result <- hx_table(columns = c("cut", "price"), id = "tbody")
+test_that("hx_table() tbody has the provided tbody_id", {
+  result <- hx_table(columns = c("cut", "price"), tbody_id = "tbody")
   tbody <- result$children[[2]]
   expect_equal(tbody$name, "tbody")
   expect_equal(tbody$attribs$id, "tbody")

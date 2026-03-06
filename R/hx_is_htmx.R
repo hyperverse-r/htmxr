@@ -12,13 +12,13 @@
 #' @examples
 #' # Simulated htmx request
 #' req <- list(headers = list(`hx-request` = "true"))
-#' htmxr_is_htmx(req)
+#' hx_is_htmx(req)
 #'
 #' # Regular request
 #' req <- list(headers = list())
-#' htmxr_is_htmx(req)
+#' hx_is_htmx(req)
 #'
 #' @export
-htmxr_is_htmx <- function(request) {
+hx_is_htmx <- function(request) {
   identical(request$headers[["hx-request"]], "true")
 }
