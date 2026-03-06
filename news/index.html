@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,28 @@
       <small>Source: <a href="https://github.com/hyperverse-r/htmxr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="htmxr-020">htmxr 0.2.0<a class="anchor" aria-label="anchor" href="#htmxr-020"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-0-2-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-2-0"></a></h3>
+<ul><li>
+<code>htmxr_is_htmx()</code> renamed to <code><a href="../reference/hx_is_htmx.html">hx_is_htmx()</a></code> to follow the <code>hx_</code> prefix convention applied to all exported functions.</li>
+<li>
+<code><a href="../reference/hx_button.html">hx_button()</a></code> parameter order changed: <code>id</code> is now first and required (was <code>label</code>). Update calls like <code>hx_button("Click me")</code> to <code>hx_button("my-btn", label = "Click me")</code>.</li>
+<li>
+<code><a href="../reference/hx_table.html">hx_table()</a></code> parameter <code>id</code> renamed to <code>tbody_id</code> to clarify that the id is applied to the <code>&lt;tbody&gt;</code>, not the <code>&lt;table&gt;</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functions-0-2-0">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-2-0"></a></h3>
+<ul><li>
+<code><a href="../reference/hx_trigger.html">hx_trigger()</a></code> — adds an <code>HX-Trigger</code> response header to a plumber2 response, causing htmx to fire a client-side event immediately after the response.</li>
+<li>
+<code><a href="../reference/hx_trigger.html">hx_trigger_after_swap()</a></code> — same, but fires after htmx swaps the new content into the DOM (<code>HX-Trigger-After-Swap</code>).</li>
+<li>
+<code><a href="../reference/hx_trigger.html">hx_trigger_after_settle()</a></code> — same, but fires after htmx settles (<code>HX-Trigger-After-Settle</code>).</li>
+<li>The <code>event</code> argument accepts a character vector (multiple events) or a named list (events with JSON detail payloads), serialised without external dependencies.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="htmxr-011">htmxr 0.1.1<a class="anchor" aria-label="anchor" href="#htmxr-011"></a></h2><p class="text-muted">CRAN release: 2026-03-04</p>
 <ul><li>Fix invalid ‘plumber2’ URL in vignette (was pointing to a non-existent GitHub repository, now points to <a href="https://plumber2.posit.co/" class="external-link uri">https://plumber2.posit.co/</a>).</li>

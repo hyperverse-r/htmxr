@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,39 +72,12 @@
 <td>Alimenter la roadmap</td>
 </tr></tbody></table></div>
 <div class="section level2">
-<h2 id="contexte-du-projet">Contexte du projet<a class="anchor" aria-label="anchor" href="#contexte-du-projet"></a></h2>
-<p><code>htmxr</code> est un package R qui fournit des primitives pour construire des applications web avec htmx et plumber2. Il est agnostique CSS — il ne dépend d’aucun framework CSS particulier.</p>
+<h2 id="suivi-de-lécosystème">Suivi de l’écosystème<a class="anchor" aria-label="anchor" href="#suivi-de-l%C3%A9cosyst%C3%A8me"></a></h2>
+<p>Consulter <code>dev/hyperverse.md</code> en début de session — état et roadmap de tous les packages hyperverse. Mettre à jour ce fichier au fil des échanges.</p>
 </div>
 <div class="section level2">
-<h2 id="écosystème-hyperverse">Écosystème hyperverse<a class="anchor" aria-label="anchor" href="#%C3%A9cosyst%C3%A8me-hyperverse"></a></h2>
-<p><code>htmxr</code> fait partie d’un écosystème plus large, structuré à l’image du tidyverse. Le package ombrelle <strong><code>hyperverse</code></strong> permettra d’importer l’ensemble de l’écosystème en une seule commande (<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library(hyperverse)</a></code>).</p>
-<div class="section level3">
-<h3 id="packages-de-lécosystème">Packages de l’écosystème<a class="anchor" aria-label="anchor" href="#packages-de-l%C3%A9cosyst%C3%A8me"></a></h3>
-<table class="table"><colgroup><col width="60%"><col width="40%"></colgroup><thead><tr class="header"><th>Package</th>
-<th>Rôle</th>
-</tr></thead><tbody><tr class="odd"><td><code>htmxr</code></td>
-<td>Core — primitives htmx (ce package)</td>
-</tr><tr class="even"><td><code>alpiner</code></td>
-<td>Wrapper Alpine.js — logique client déclarative</td>
-</tr><tr class="odd"><td><code>framer</code></td>
-<td>Orchestrateur — scaffold, routing, déploiement (≈ golem pour htmxr)</td>
-</tr><tr class="even"><td><code>htmxr.bootstrap</code></td>
-<td>Surcouche opinionated Bootstrap sur htmxr</td>
-</tr><tr class="odd"><td><code>htmxr.daisy</code></td>
-<td>Surcouche opinionated Daisy.ui sur htmxr</td>
-</tr><tr class="even"><td><code>hyperverse</code></td>
-<td>Meta-package ombrelle — charge tout l’écosystème</td>
-</tr></tbody></table></div>
-<div class="section level3">
-<h3 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a></h3>
-<ul><li>
-<code>htmxr</code> est destiné à une publications sur le CRAN</li>
-<li>
-<code>htmxr.bootstrap</code> et les autres packages de l’hyperverse aussi (les points dans les noms sont acceptés par CRAN, ex: <code>data.table</code>)</li>
-<li>
-<code>framer</code> est un nom provisoire — à confirmer</li>
-<li>L’écosystème est CSS-agnostique au niveau core ; la dépendance CSS est optée explicitement via <code>htmxr.bootstrap</code> ou un équivalent</li>
-</ul></div>
+<h2 id="contexte-du-projet">Contexte du projet<a class="anchor" aria-label="anchor" href="#contexte-du-projet"></a></h2>
+<p><code>htmxr</code> est un package R qui fournit des primitives pour construire des applications web avec htmx et plumber2. Il est agnostique CSS — il ne dépend d’aucun framework CSS particulier.</p>
 </div>
 <div class="section level2">
 <h2 id="stack-technique">Stack technique<a class="anchor" aria-label="anchor" href="#stack-technique"></a></h2>
@@ -145,9 +118,6 @@
 <h2 id="exemples">Exemples<a class="anchor" aria-label="anchor" href="#exemples"></a></h2>
 <p>Les exemples disponibles se trouvent dans <code>inst/examples/</code>. Chaque sous-dossier contient un fichier <code>api.R</code> exécutable via <code>hx_run_example("&lt;nom&gt;")</code>.</p>
 <p>Les exemples existants sont une bonne source d’inspiration pour comprendre comment combiner les primitives htmxr. Consulter ce dossier avant de demander des exemples ou de l’aide.</p>
-<blockquote>
-<p>À terme, un site vitrine (pkgdown ou autre) présentera ces exemples de façon visuelle.</p>
-</blockquote>
 <div class="section level3">
 <h3 id="convention-de-nommage">Convention de nommage<a class="anchor" aria-label="anchor" href="#convention-de-nommage"></a></h3>
 <p>Les dossiers d’exemples sont nommés selon le <strong>concept pédagogique</strong> démontré, pas selon le dataset ou le domaine métier utilisé.</p>
@@ -161,11 +131,13 @@
 <h2 id="décisions-techniques-importantes">Décisions techniques importantes<a class="anchor" aria-label="anchor" href="#d%C3%A9cisions-techniques-importantes"></a></h2>
 <div class="section level3">
 <h3 id="conventions-de-nommage">Conventions de nommage<a class="anchor" aria-label="anchor" href="#conventions-de-nommage"></a></h3>
-<ul><li>Fonctions préfixées <code>hx_</code> — pas <code>htmxr_</code>. Cette convention s’applique à toutes les fonctions exportées sans exception, y compris les helpers et les wrappers.</li>
+<ul><li>Fonctions préfixées <code>hx_</code> — pas <code>htmxr_</code>. Cette convention s’applique à toutes les fonctions exportées sans exception, y compris les helpers et les wrappers (ex : <code><a href="reference/hx_is_htmx.html">hx_is_htmx()</a></code>, pas <code>htmxr_is_htmx()</code>).</li>
+<li>Ordre des paramètres des composants : <code>id</code> toujours en premier et <strong>obligatoire</strong>, <code>label = NULL</code> en deuxième. Cohérent avec Shiny (<code>inputId</code> en premier) et entre toutes les fonctions <code>hx_*</code> (ex : <code>hx_button(id, label = NULL)</code>, <code>hx_select_input(id, label = NULL, choices)</code>).</li>
 <li>Paramètres htmx : <code>get</code>, <code>post</code>, <code>target</code>, <code>swap</code>, <code>trigger</code>, <code>indicator</code>, <code>swap_oob</code>, <code>confirm</code>
 </li>
 <li>Pas de <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0()</a></code> pour construire du HTML — utiliser <code><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">htmltools::tags</a></code>
 </li>
+<li>Dans les routes plumber2, le paramètre réponse <strong>doit</strong> s’appeler <code>response</code> et le paramètre requête <code>request</code> — ce sont les seuls noms reconnus pour l’injection automatique (documenté dans la vignette plumber2 “routing-and-input”)</li>
 </ul></div>
 </div>
 <div class="section level2">

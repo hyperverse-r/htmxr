@@ -6,8 +6,8 @@ Creates a `<button>` element with optional htmx attributes.
 
 ``` r
 hx_button(
-  label,
-  id = NULL,
+  id,
+  label = NULL,
   class = NULL,
   get = NULL,
   post = NULL,
@@ -23,13 +23,14 @@ hx_button(
 
 ## Arguments
 
-- label:
-
-  Button label (text or HTML content).
-
 - id:
 
-  Optional element id.
+  Element id.
+
+- label:
+
+  Button label (text or HTML content). Pass `NULL` for icon-only buttons
+  — in that case supply an `aria-label` via `...`.
 
 - class:
 
@@ -81,14 +82,14 @@ object.
 
 ``` r
 # Simple button
-hx_button("Click me")
-#> <button type="button">Click me</button>
+hx_button("btn1", "Click me")
+#> <button type="button" id="btn1">Click me</button>
 
 # Button with htmx GET request
-hx_button("Load data", get = "/api/data", target = "#result")
-#> <button type="button" hx-get="/api/data" hx-target="#result">Load data</button>
+hx_button("load-btn", "Load data", get = "/api/data", target = "#result")
+#> <button type="button" id="load-btn" hx-get="/api/data" hx-target="#result">Load data</button>
 
 # Button with confirmation
-hx_button("Delete", post = "/api/delete", confirm = "Are you sure?")
-#> <button type="button" hx-post="/api/delete" hx-confirm="Are you sure?">Delete</button>
+hx_button("del-btn", "Delete", post = "/api/delete", confirm = "Are you sure?")
+#> <button type="button" id="del-btn" hx-post="/api/delete" hx-confirm="Are you sure?">Delete</button>
 ```

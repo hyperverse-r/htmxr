@@ -7,9 +7,9 @@
 <url><loc>https://hyperverse-r.github.io/htmxr/authors.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/index.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/news/index.html</loc></url>
-<url><loc>https://hyperverse-r.github.io/htmxr/reference/htmxr_is_htmx.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_button.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_head.html</loc></url>
+<url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_is_htmx.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_page.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_run_example.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_select_input.html</loc></url>
@@ -18,6 +18,7 @@
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_slider_input.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_table.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_table_rows.html</loc></url>
+<url><loc>https://hyperverse-r.github.io/htmxr/reference/hx_trigger.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/index.html</loc></url>
 <url><loc>https://hyperverse-r.github.io/htmxr/reference/reexports.html</loc></url>
 </urlset>

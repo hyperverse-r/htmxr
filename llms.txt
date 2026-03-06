@@ -182,8 +182,12 @@ Add or modify htmx attributes on any HTML element.
 
 Server-side utilities for handling htmx requests.
 
-- [`htmxr_is_htmx()`](https://hyperverse-r.github.io/htmxr/reference/htmxr_is_htmx.md)
+- [`hx_is_htmx()`](https://hyperverse-r.github.io/htmxr/reference/hx_is_htmx.md)
   : Detect if a request comes from htmx
+- [`hx_trigger()`](https://hyperverse-r.github.io/htmxr/reference/hx_trigger.md)
+  [`hx_trigger_after_swap()`](https://hyperverse-r.github.io/htmxr/reference/hx_trigger.md)
+  [`hx_trigger_after_settle()`](https://hyperverse-r.github.io/htmxr/reference/hx_trigger.md)
+  : Trigger client-side htmx events via response headers
 
 ## Developer tools
 

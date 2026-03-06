@@ -11,7 +11,7 @@ content is loaded lazily via htmx (e.g. `trigger = "load"`).
 hx_table(
   columns,
   data = NULL,
-  id = NULL,
+  tbody_id = NULL,
   col_labels = NULL,
   col_classes = NULL,
   class = NULL,
@@ -42,9 +42,9 @@ hx_table(
   [`hx_table_rows()`](https://hyperverse-r.github.io/htmxr/reference/hx_table_rows.md).
   If `NULL`, the `<tbody>` is empty.
 
-- id:
+- tbody_id:
 
-  `id` attribute applied to the `<tbody>`.
+  `id` attribute applied to the `<tbody>` — not the `<table>`.
 
 - col_labels:
 
@@ -115,7 +115,7 @@ object (`<table>`).
 hx_table(
   columns = c("cut", "color", "price"),
   col_labels = c("Cut", "Color", "Price"),
-  id = "tbody",
+  tbody_id = "tbody",
   get = "/rows",
   trigger = "load",
   swap = "innerHTML"
