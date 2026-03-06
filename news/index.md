@@ -2,6 +2,8 @@
 
 ## htmxr 0.2.0
 
+CRAN release: 2026-03-06
+
 ### Breaking changes
 
 - `htmxr_is_htmx()` renamed to
