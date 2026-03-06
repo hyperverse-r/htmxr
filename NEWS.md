@@ -4,8 +4,8 @@
 
 * `htmxr_is_htmx()` renamed to `hx_is_htmx()` to follow the `hx_` prefix
   convention applied to all exported functions.
-* `hx_button()` parameter order changed: `id` is now first (was `label`).
-  Update calls like `hx_button("Click me")` to `hx_button(label = "Click me")`.
+* `hx_button()` parameter order changed: `id` is now first and required (was `label`).
+  Update calls like `hx_button("Click me")` to `hx_button("my-btn", label = "Click me")`.
 * `hx_table()` parameter `id` renamed to `tbody_id` to clarify that the id is
   applied to the `<tbody>`, not the `<table>`.
 
