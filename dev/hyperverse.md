@@ -8,7 +8,7 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 
 | Package          | Statut        | Version  | Prochain jalon                    |
 |------------------|---------------|----------|-----------------------------------|
-| htmxr            | stable        | 0.2.0    | hx_file_input()                    |
+| htmxr            | stable        | 0.3.0    | hx_text_input()                    |
 | htmxr.bootstrap  | en dev        | —        | fix hx_bs_button + CRUD           |
 | lucidr           | soumis CRAN   | 0.1.0    | attente validation                |
 | alpiner          | en dev        | —        | retirer x_page()                  |
@@ -26,7 +26,7 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 **Repo :** `htmxr/` — package core, CSS-agnostique, CRAN
 
 ### En cours
-- Exemple : `inst/examples/crud-delete/api.R` (bouton supprimer ligne → DELETE → outerHTML swap)
+- Exemple : `inst/examples/delete-row/api.R` ✅ (bouton supprimer ligne → DELETE + `vals`)
 
 ### Backlog
 
