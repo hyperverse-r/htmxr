@@ -22,6 +22,8 @@ hx_set(
   push_url = NULL,
   select = NULL,
   vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 )
 }
@@ -74,6 +76,12 @@ HTML page but only a fragment is needed (e.g. \code{"#data-table"}).}
 \item{vals}{JSON string of extra values to include in the request for
 \code{hx-vals} (e.g. \code{'{"id": 42}'}). Values are passed as-is — no
 serialisation is performed.}
+
+\item{encoding}{Encoding type for \code{hx-encoding}. Use
+\code{"multipart/form-data"} to enable file uploads via \verb{<input type="file">}.}
+
+\item{headers}{JSON string of request headers for \code{hx-headers} (e.g.
+\code{'{"Authorization": "Bearer token"}'}). Values are passed as-is.}
 
 \item{...}{Additional htmx attributes passed as-is (e.g.
 \code{`hx-disabled-elt` = "this"}, \code{`hx-prompt` = "Raison ?"}).

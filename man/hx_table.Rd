@@ -28,6 +28,8 @@ hx_table(
   push_url = NULL,
   select = NULL,
   vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 )
 }
@@ -91,6 +93,12 @@ a specific element from the server response before swapping.}
 
 \item{vals}{JSON string of extra values for \code{hx-vals} (applied to
 \verb{<tbody>}). Values are passed as-is (e.g. \code{'{"id": 42}'}).}
+
+\item{encoding}{Encoding type for \code{hx-encoding} (applied to \verb{<tbody>}).
+Use \code{"multipart/form-data"} to enable file uploads.}
+
+\item{headers}{JSON string of request headers for \code{hx-headers} (applied to
+\verb{<tbody>}). Values are passed as-is.}
 
 \item{...}{Additional HTML attributes passed to the \verb{<table>} element.}
 }

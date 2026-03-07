@@ -69,6 +69,14 @@ test_that("hx_attrs() maps R params to hx-* attributes", {
     hx_attrs(vals = '{"id": 42}'),
     list(`hx-vals` = '{"id": 42}')
   )
+  expect_equal(
+    hx_attrs(encoding = "multipart/form-data"),
+    list(`hx-encoding` = "multipart/form-data")
+  )
+  expect_equal(
+    hx_attrs(headers = '{"Authorization": "Bearer tok"}'),
+    list(`hx-headers` = '{"Authorization": "Bearer tok"}')
+  )
 })
 
 test_that("hx_attrs() drops NULL values", {
@@ -94,9 +102,11 @@ test_that("hx_attrs() with all params returns all attributes", {
     include = "#form",
     push_url = "true",
     select = "#data-table",
-    vals = '{"id": 1}'
+    vals = '{"id": 1}',
+    encoding = "multipart/form-data",
+    headers = '{"X-Custom": "val"}'
   )
-  expect_length(result, 16)
+  expect_length(result, 18)
   expect_named(
     result,
     c(
@@ -115,7 +125,9 @@ test_that("hx_attrs() with all params returns all attributes", {
       "hx-include",
       "hx-push-url",
       "hx-select",
-      "hx-vals"
+      "hx-vals",
+      "hx-encoding",
+      "hx-headers"
     )
   )
 })

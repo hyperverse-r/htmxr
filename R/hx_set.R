@@ -35,6 +35,10 @@
 #' @param vals JSON string of extra values to include in the request for
 #'   `hx-vals` (e.g. `'{"id": 42}'`). Values are passed as-is — no
 #'   serialisation is performed.
+#' @param encoding Encoding type for `hx-encoding`. Use
+#'   `"multipart/form-data"` to enable file uploads via `<input type="file">`.
+#' @param headers JSON string of request headers for `hx-headers` (e.g.
+#'   `'{"Authorization": "Bearer token"}'`). Values are passed as-is.
 #' @param ... Additional htmx attributes passed as-is (e.g.
 #'   `` `hx-disabled-elt` = "this" ``, `` `hx-prompt` = "Raison ?" ``).
 #'   All arguments must be named. Names must start with `hx-` or `data-hx-` —
@@ -74,6 +78,8 @@ hx_set <- function(
   push_url = NULL,
   select = NULL,
   vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 ) {
   extra <- list(...)
@@ -108,7 +114,9 @@ hx_set <- function(
     include = include,
     push_url = push_url,
     select = select,
-    vals = vals
+    vals = vals,
+    encoding = encoding,
+    headers = headers
   )
 
   conflicts <- intersect(names(extra), names(hx))

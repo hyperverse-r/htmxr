@@ -80,6 +80,10 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 #'   a specific element from the server response before swapping.
 #' @param vals JSON string of extra values for `hx-vals` (applied to
 #'   `<tbody>`). Values are passed as-is (e.g. `'{"id": 42}'`).
+#' @param encoding Encoding type for `hx-encoding` (applied to `<tbody>`).
+#'   Use `"multipart/form-data"` to enable file uploads.
+#' @param headers JSON string of request headers for `hx-headers` (applied to
+#'   `<tbody>`). Values are passed as-is.
 #' @param ... Additional HTML attributes passed to the `<table>` element.
 #'
 #' @return An [htmltools::tags] object (`<table>`).
@@ -124,6 +128,8 @@ hx_table <- function(
   push_url = NULL,
   select = NULL,
   vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 ) {
   # Resolve column labels
@@ -168,7 +174,9 @@ hx_table <- function(
       include = include,
       push_url = push_url,
       select = select,
-      vals = vals
+      vals = vals,
+      encoding = encoding,
+      headers = headers
     )
 
   # table

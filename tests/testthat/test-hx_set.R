@@ -125,6 +125,27 @@ test_that("hx_set() sets hx-vals", {
   expect_equal(result$attribs[["hx-vals"]], '{"id": 42}')
 })
 
+test_that("hx_set() sets hx-encoding", {
+  result <- hx_set(
+    tags$form(),
+    post = "/upload",
+    encoding = "multipart/form-data"
+  )
+  expect_equal(result$attribs[["hx-encoding"]], "multipart/form-data")
+})
+
+test_that("hx_set() sets hx-headers", {
+  result <- hx_set(
+    tags$div(),
+    get = "/api",
+    headers = '{"Authorization": "Bearer tok"}'
+  )
+  expect_equal(
+    result$attribs[["hx-headers"]],
+    '{"Authorization": "Bearer tok"}'
+  )
+})
+
 test_that("hx_set() passes raw hx-* attributes via ...", {
   result <- hx_set(tags$div(), `hx-disabled-elt` = "this")
   expect_equal(result$attribs[["hx-disabled-elt"]], "this")

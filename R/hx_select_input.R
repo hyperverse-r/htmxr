@@ -42,6 +42,10 @@
 #'   from the server response before swapping (e.g. `"#data-table"`).
 #' @param vals JSON string of extra values to include in the request for
 #'   `hx-vals` (e.g. `'{"id": 42}'`). Values are passed as-is.
+#' @param encoding Encoding type for `hx-encoding`. Use
+#'   `"multipart/form-data"` to enable file uploads.
+#' @param headers JSON string of request headers for `hx-headers` (e.g.
+#'   `'{"Authorization": "Bearer token"}'`). Values are passed as-is.
 #' @param ... Additional HTML attributes passed to the `<select>` element.
 #'
 #' @return An [htmltools::tags] object.
@@ -93,6 +97,8 @@ hx_select_input <- function(
   push_url = NULL,
   select = NULL,
   vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 ) {
   if (is.null(names(choices))) names(choices) <- as.character(choices)
@@ -142,7 +148,9 @@ hx_select_input <- function(
       include = include,
       push_url = push_url,
       select = select,
-      vals = vals
+      vals = vals,
+      encoding = encoding,
+      headers = headers
     )
 
   if (!is.null(label)) {

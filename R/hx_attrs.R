@@ -19,7 +19,9 @@ hx_attrs <- function(
   include = NULL,
   push_url = NULL,
   select = NULL,
-  vals = NULL
+  vals = NULL,
+  encoding = NULL,
+  headers = NULL
 ) {
   attrs <- list(
     `hx-get` = get,
@@ -37,7 +39,9 @@ hx_attrs <- function(
     `hx-include` = include,
     `hx-push-url` = push_url,
     `hx-select` = select,
-    `hx-vals` = vals
+    `hx-vals` = vals,
+    `hx-encoding` = encoding,
+    `hx-headers` = headers
   )
   attrs[!vapply(attrs, is.null, logical(1))]
 }
