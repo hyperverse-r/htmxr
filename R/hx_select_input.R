@@ -41,11 +41,13 @@
 #' @param select CSS selector for `hx-select`. Extracts a specific element
 #'   from the server response before swapping (e.g. `"#data-table"`).
 #' @param vals JSON string of extra values to include in the request for
-#'   `hx-vals` (e.g. `'{"id": 42}'`). Values are passed as-is.
+#'   `hx-vals` (e.g. `'{"id": 42}'`). Values are passed as-is. Avoid `js:`
+#'   expressions with HTML-special characters — htmltools will escape them.
 #' @param encoding Encoding type for `hx-encoding`. Use
 #'   `"multipart/form-data"` to enable file uploads.
 #' @param headers JSON string of request headers for `hx-headers` (e.g.
-#'   `'{"Authorization": "Bearer token"}'`). Values are passed as-is.
+#'   `'{"X-Custom-Header": "value"}'`). Values are passed as-is. Do not
+#'   embed sensitive tokens in HTML attributes.
 #' @param ... Additional HTML attributes passed to the `<select>` element.
 #'
 #' @return An [htmltools::tags] object.

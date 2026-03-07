@@ -74,8 +74,8 @@ test_that("hx_attrs() maps R params to hx-* attributes", {
     list(`hx-encoding` = "multipart/form-data")
   )
   expect_equal(
-    hx_attrs(headers = '{"Authorization": "Bearer tok"}'),
-    list(`hx-headers` = '{"Authorization": "Bearer tok"}')
+    hx_attrs(headers = '{"X-Custom-Header": "value"}'),
+    list(`hx-headers` = '{"X-Custom-Header": "value"}')
   )
 })
 

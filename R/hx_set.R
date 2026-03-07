@@ -34,11 +34,16 @@
 #'   HTML page but only a fragment is needed (e.g. `"#data-table"`).
 #' @param vals JSON string of extra values to include in the request for
 #'   `hx-vals` (e.g. `'{"id": 42}'`). Values are passed as-is — no
-#'   serialisation is performed.
+#'   serialisation is performed. The `js:` prefix for dynamic expressions is
+#'   supported by htmx but expressions containing HTML-special characters
+#'   (`<`, `>`, `&`, `"`) will be escaped by htmltools and silently corrupted
+#'   at runtime — avoid them or use DOM-based lookups instead.
 #' @param encoding Encoding type for `hx-encoding`. Use
 #'   `"multipart/form-data"` to enable file uploads via `<input type="file">`.
 #' @param headers JSON string of request headers for `hx-headers` (e.g.
-#'   `'{"Authorization": "Bearer token"}'`). Values are passed as-is.
+#'   `'{"X-Custom-Header": "value"}'`). Values are passed as-is. Do not
+#'   embed sensitive tokens (auth headers, API keys) in HTML attributes —
+#'   they are readable by any script on the page.
 #' @param ... Additional htmx attributes passed as-is (e.g.
 #'   `` `hx-disabled-elt` = "this" ``, `` `hx-prompt` = "Raison ?" ``).
 #'   All arguments must be named. Names must start with `hx-` or `data-hx-` —

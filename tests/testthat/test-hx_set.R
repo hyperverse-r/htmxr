@@ -70,8 +70,8 @@ test_that("hx_set() sets hx-indicator", {
 })
 
 test_that("hx_set() sets hx-swap-oob", {
-  result <- hx_set(tags$div(), swap_oob = "#oob")
-  expect_equal(result$attribs[["hx-swap-oob"]], "#oob")
+  result <- hx_set(tags$div(), swap_oob = "outerHTML:#oob")
+  expect_equal(result$attribs[["hx-swap-oob"]], "outerHTML:#oob")
 })
 
 test_that("hx_set() sets hx-confirm", {
@@ -138,11 +138,11 @@ test_that("hx_set() sets hx-headers", {
   result <- hx_set(
     tags$div(),
     get = "/api",
-    headers = '{"Authorization": "Bearer tok"}'
+    headers = '{"X-Custom-Header": "value"}'
   )
   expect_equal(
     result$attribs[["hx-headers"]],
-    '{"Authorization": "Bearer tok"}'
+    '{"X-Custom-Header": "value"}'
   )
 })
 

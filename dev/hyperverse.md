@@ -8,7 +8,7 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 
 | Package          | Statut        | Version  | Prochain jalon                    |
 |------------------|---------------|----------|-----------------------------------|
-| htmxr            | stable        | 0.2.0    | CRUD verbs (delete, put, patch)   |
+| htmxr            | stable        | 0.2.0    | hx_file_input()                    |
 | htmxr.bootstrap  | en dev        | —        | fix hx_bs_button + CRUD           |
 | lucidr           | soumis CRAN   | 0.1.0    | attente validation                |
 | alpiner          | en dev        | —        | retirer x_page()                  |
@@ -26,10 +26,7 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 **Repo :** `htmxr/` — package core, CSS-agnostique, CRAN
 
 ### En cours
-- CRUD verbs : ajouter `delete`, `put`, `patch` dans `hx_attrs()` / `hx_set()`
-  - Propager dans : `hx_button()`, `hx_select_input()`, `hx_slider_input()`, `hx_table()`
-  - Tests : `tests/testthat/test-hx_set.R`
-  - Exemple : `inst/examples/crud-delete/api.R` (bouton supprimer ligne → DELETE → outerHTML swap)
+- Exemple : `inst/examples/crud-delete/api.R` (bouton supprimer ligne → DELETE → outerHTML swap)
 
 ### Backlog
 
@@ -46,6 +43,20 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 **Exemples** :
 - `sortable-table` : tri par colonne via `hx-get` sur `<th>`, zéro JS
 - `report-download` : génération rapport Rmd async (`@async` plumber2) + lien téléchargement
+
+**Attributs htmx dans `hx_attrs()` / `hx_set()` / composants** (état 2026-03-07) :
+
+Depuis l'ajout de `...` dans `hx_set()`, tous les attributs htmx non couverts
+sont accessibles via `` `hx-replace-url` = "true" `` etc. — l'urgence de
+promouvoir les attributs restants en paramètres nommés est fortement réduite.
+
+- `hx-vals` ✅ ajouté (param `vals`)
+- `hx-select` ✅ ajouté (param `select`)
+- `hx-push-url` ✅ ajouté (param `push_url`)
+- `hx-encoding` ✅ ajouté (param `encoding`)
+- `hx-headers` ✅ ajouté (param `headers`)
+- `hx-replace-url`, `hx-boost`, `hx-sync`, `hx-ext` ← accessibles via `...`,
+  pas besoin de paramètre nommé
 
 **Divers** :
 - Valider `target` CSS selector silencieux (ex: `"plot"` au lieu de `"#plot"` → aucune erreur)
