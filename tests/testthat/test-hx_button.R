@@ -39,6 +39,12 @@ test_that("hx_button() adds multiple htmx attributes", {
   expect_equal(result$attribs$`hx-confirm`, "Are you sure?")
 })
 
+test_that("hx_button() supports delete with confirm", {
+  result <- hx_button("del", "Delete", delete = "/items/1", confirm = "Sure?")
+  expect_equal(result$attribs[["hx-delete"]], "/items/1")
+  expect_equal(result$attribs[["hx-confirm"]], "Sure?")
+})
+
 test_that("hx_button() passes extra attributes via ...", {
   result <- hx_button("btn1", "Click", `data-action` = "submit", disabled = NA)
   expect_equal(result$attribs$`data-action`, "submit")

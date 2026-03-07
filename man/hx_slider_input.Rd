@@ -15,12 +15,20 @@ hx_slider_input(
   class = NULL,
   get = NULL,
   post = NULL,
+  put = NULL,
+  patch = NULL,
+  delete = NULL,
   target = NULL,
   swap = NULL,
   trigger = NULL,
   indicator = NULL,
   swap_oob = NULL,
   confirm = NULL,
+  params = NULL,
+  include = NULL,
+  push_url = NULL,
+  select = NULL,
+  vals = NULL,
   ...
 )
 }
@@ -46,6 +54,14 @@ hx_slider_input(
 
 \item{post}{URL for \code{hx-post}.}
 
+\item{put}{URL for \code{hx-put}.}
+
+\item{patch}{URL for \code{hx-patch}.}
+
+\item{delete}{URL for \code{hx-delete}. Note: parameters are sent in the URL
+query string (not the request body) — read them via \code{request$query} in
+your plumber2 route.}
+
 \item{target}{CSS selector for \code{hx-target}.}
 
 \item{swap}{Swap strategy for \code{hx-swap}.}
@@ -57,6 +73,24 @@ hx_slider_input(
 \item{swap_oob}{Out-of-band swap targets for \code{hx-swap-oob}.}
 
 \item{confirm}{Confirmation message for \code{hx-confirm}.}
+
+\item{params}{Parameters to submit for \code{hx-params}. Use \code{"*"} to include
+all parameters (equivalent to omitting this argument), \code{"none"} to send
+none, or a comma-separated list of names (e.g. \code{"id, name"}). Prefix with
+\code{not} to exclude specific parameters (e.g. \code{"not id, name"}).}
+
+\item{include}{CSS selector for \code{hx-include}. Additional elements whose
+values are included in the request. htmx relative selectors are valid:
+\code{"closest form"}, \code{"find input"}, \code{"next .sibling"}. Note: \code{params = "none"} does \strong{not} suppress values sourced via \code{include}.}
+
+\item{push_url}{Push a URL into the browser history for \code{hx-push-url}. Use
+\code{"true"} to push the request URL, \code{"false"} to disable, or a custom URL.}
+
+\item{select}{CSS selector for \code{hx-select}. Extracts a specific element from
+the server response before swapping (e.g. \code{"#data-table"}).}
+
+\item{vals}{JSON string of extra values to include in the request for
+\code{hx-vals} (e.g. \code{'{"id": 42}'}). Values are passed as-is.}
 
 \item{...}{Additional HTML attributes passed to the \verb{<input>} element.}
 }

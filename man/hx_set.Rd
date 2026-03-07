@@ -8,12 +8,21 @@ hx_set(
   tag,
   get = NULL,
   post = NULL,
+  put = NULL,
+  patch = NULL,
+  delete = NULL,
   target = NULL,
   swap = NULL,
   trigger = NULL,
   indicator = NULL,
   swap_oob = NULL,
-  confirm = NULL
+  confirm = NULL,
+  params = NULL,
+  include = NULL,
+  push_url = NULL,
+  select = NULL,
+  vals = NULL,
+  ...
 )
 }
 \arguments{
@@ -22,6 +31,14 @@ hx_set(
 \item{get}{URL for \code{hx-get}.}
 
 \item{post}{URL for \code{hx-post}.}
+
+\item{put}{URL for \code{hx-put}.}
+
+\item{patch}{URL for \code{hx-patch}.}
+
+\item{delete}{URL for \code{hx-delete}. Note: parameters are sent in the URL
+query string (not the request body) — read them via \code{request$query} in
+your plumber2 route.}
 
 \item{target}{CSS selector for \code{hx-target}.}
 
@@ -34,6 +51,36 @@ hx_set(
 \item{swap_oob}{Out-of-band swap targets for \code{hx-swap-oob}.}
 
 \item{confirm}{Confirmation message for \code{hx-confirm}.}
+
+\item{params}{Parameters to submit for \code{hx-params}. Use \code{"*"} to include
+all parameters (equivalent to omitting this argument), \code{"none"} to send
+none, or a comma-separated list of names (e.g. \code{"id, name"}). Prefix with
+\code{not} to exclude specific parameters (e.g. \code{"not id, name"}).}
+
+\item{include}{CSS selector for \code{hx-include}. Additional elements whose
+values are included in the request. htmx relative selectors are valid:
+\code{"closest form"}, \code{"find input"}, \code{"next .sibling"}, \code{"previous .sibling"}.
+Note: \code{params = "none"} does \strong{not} suppress values sourced via \code{include}
+— the two operate independently.}
+
+\item{push_url}{Push a URL into the browser history for \code{hx-push-url}. Use
+\code{"true"} to push the request URL, \code{"false"} to disable (e.g. to override
+inheritance), or a custom URL string.}
+
+\item{select}{CSS selector for \code{hx-select}. Extracts a specific element from
+the server response before swapping — useful when the server returns a full
+HTML page but only a fragment is needed (e.g. \code{"#data-table"}).}
+
+\item{vals}{JSON string of extra values to include in the request for
+\code{hx-vals} (e.g. \code{'{"id": 42}'}). Values are passed as-is — no
+serialisation is performed.}
+
+\item{...}{Additional htmx attributes passed as-is (e.g.
+\code{`hx-disabled-elt` = "this"}, \code{`hx-prompt` = "Raison ?"}).
+All arguments must be named. Names must start with \verb{hx-} or \verb{data-hx-} —
+a warning is emitted otherwise. Values are passed without transformation:
+use \code{"true"}/\code{"false"} (not \code{TRUE}/\code{FALSE}) for boolean htmx attributes,
+and pre-serialized JSON strings for \code{hx-vals} or \code{hx-headers}.}
 }
 \value{
 The input \code{tag} with htmx attributes appended.
