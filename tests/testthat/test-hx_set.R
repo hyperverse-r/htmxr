@@ -170,6 +170,13 @@ test_that("hx_set() errors when named param and ... conflict", {
   )
 })
 
+test_that("hx_set() errors when data-hx-* alias in ... conflicts with named param", {
+  expect_error(
+    hx_set(tags$div(), get = "/foo", `data-hx-get` = "/bar"),
+    "conflicting"
+  )
+})
+
 test_that("hx_set() produces correct HTML output", {
   html <- as.character(
     tags$div(id = "plot", class = "text-center") |>

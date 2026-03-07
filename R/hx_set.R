@@ -132,11 +132,13 @@ hx_set <- function(
     headers = headers
   )
 
-  conflicts <- intersect(names(extra), names(hx))
+  normalized_extra_names <- sub("^data-hx-", "hx-", names(extra))
+  conflicts <- intersect(normalized_extra_names, names(hx))
   if (length(conflicts) > 0) {
+    conflicting_orig <- names(extra)[normalized_extra_names %in% conflicts]
     stop(
       "hx_set() has conflicting attributes (named param and `...`): ",
-      paste(conflicts, collapse = ", "),
+      paste(conflicting_orig, collapse = ", "),
       ". Use either the named parameter or `...`, not both.",
       call. = FALSE
     )
