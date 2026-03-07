@@ -11,8 +11,9 @@
 #' @param put URL for `hx-put`.
 #' @param patch URL for `hx-patch`.
 #' @param delete URL for `hx-delete`. Note: parameters are sent in the URL
-#'   query string (not the request body) — read them via `request$query` in
-#'   your plumber2 route.
+#'   query string (not the request body) — read them via the injected `query`
+#'   argument (e.g. `function(query) query$id`) or via `request$query` if you
+#'   are using the full request object in your route.
 #' @param target CSS selector for `hx-target`.
 #' @param swap Swap strategy for `hx-swap`.
 #' @param trigger Trigger specification for `hx-trigger`.

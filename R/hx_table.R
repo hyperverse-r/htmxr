@@ -59,7 +59,9 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 #' @param put URL for `hx-put` (applied to `<tbody>`).
 #' @param patch URL for `hx-patch` (applied to `<tbody>`).
 #' @param delete URL for `hx-delete` (applied to `<tbody>`). Note: parameters
-#'   are sent in the URL query string — read them via `request$query`.
+#'   are sent in the URL query string — read them via the injected `query`
+#'   argument (e.g. `function(query) query$id`) or via `request$query` if you
+#'   are using the full request object in your route.
 #' @param target CSS selector for `hx-target` (applied to `<tbody>`).
 #' @param swap Swap strategy for `hx-swap` (applied to `<tbody>`).
 #' @param trigger Trigger specification for `hx-trigger` (applied to `<tbody>`).
