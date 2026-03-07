@@ -62,7 +62,9 @@ specific columns, or an unnamed positional vector to replace all labels.}
 \item{patch}{URL for \code{hx-patch} (applied to \verb{<tbody>}).}
 
 \item{delete}{URL for \code{hx-delete} (applied to \verb{<tbody>}). Note: parameters
-are sent in the URL query string — read them via \code{request$query}.}
+are sent in the URL query string — read them via the injected \code{query}
+argument (e.g. \code{function(query) query$id}) or via \code{request$query} if you
+are using the full request object in your route.}
 
 \item{target}{CSS selector for \code{hx-target} (applied to \verb{<tbody>}).}
 

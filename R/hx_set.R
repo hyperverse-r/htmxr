@@ -91,6 +91,13 @@ hx_set <- function(
   extra <- list(...)
 
   if (length(extra) > 0) {
+    if (is.null(names(extra)) || any(!nzchar(names(extra)))) {
+      stop(
+        "All arguments passed to `...` in hx_set() must be named ",
+        "(e.g., `hx-disabled-elt` = \"this\").",
+        call. = FALSE
+      )
+    }
     non_hx <- names(extra)[
       !startsWith(names(extra), "hx-") & !startsWith(names(extra), "data-hx-")
     ]

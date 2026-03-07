@@ -39,8 +39,9 @@ hx_set(
 \item{patch}{URL for \code{hx-patch}.}
 
 \item{delete}{URL for \code{hx-delete}. Note: parameters are sent in the URL
-query string (not the request body) — read them via \code{request$query} in
-your plumber2 route.}
+query string (not the request body) — read them via the injected \code{query}
+argument (e.g. \code{function(query) query$id}) or via \code{request$query} if you
+are using the full request object in your route.}
 
 \item{target}{CSS selector for \code{hx-target}.}
 
