@@ -16,6 +16,7 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 | supar            | planifié      | —        | POC query builder                 |
 | chartrjs         | planifié      | —        | POC Chart.js → HTML endpoint      |
 | posthogr         | idée          | —        | wrapper PostHog analytics         |
+| glitchtipr       | idée          | —        | error tracking (GlitchTip/Sentry) |
 | htmxr.tailwind   | idée          | —        | compilation Tailwind dans R       |
 
 ---
@@ -53,6 +54,110 @@ Fichier de suivi de l'écosystème. Mis à jour par Claude au fil des sessions.
 - `hx_page()` est l'unique fonction de page de l'écosystème
 - Les autres packages contribuent via `hx_head(xxx_script())` + `xxx_serve_assets(api)`
 - Dans les routes plumber2 : paramètre réponse = `response`, paramètre requête = `request`
+
+### Déploiement Docker (notes issues de l'exploration 2026-03-07)
+
+#### Dockerfile minimal fonctionnel
+
+```dockerfile
+FROM rocker/r-ver:4.4
+
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libsodium-dev \       # ← requis par plumber2/sodium, oubli = crash au démarrage
+    libcairo2-dev \       # ← requis par svglite
+    libfontconfig1-dev \
+    libwebp-dev \         # ← requis par ragg (dépendance plumber2)
+    libharfbuzz-dev \     # ← requis par textshaping/ragg
+    libfribidi-dev \      # ← requis par textshaping/ragg
+    libfreetype6-dev \    # ← requis par ragg
+    libpng-dev \          # ← requis par ragg
+    libtiff5-dev \        # ← requis par ragg
+    libjpeg-dev \         # ← requis par ragg
+    && rm -rf /var/lib/apt/lists/*
+
+RUN R -e "install.packages(c('remotes', 'htmltools', 'httr2', 'svglite', 'plumber2'), repos='https://packagemanager.posit.co/cran/__linux__/noble/latest')"
+RUN R -e "remotes::install_github('hyperverse-r/htmxr')"
+
+WORKDIR /app
+COPY . .
+EXPOSE 8000
+CMD ["Rscript", "run.R"]
+```
+
+#### run.R (entrypoint)
+
+```r
+library(plumber2)
+library(htmxr)
+
+api("api.R", doc_type = "") |>
+  hx_serve_assets() |>
+  (\(pr) pr$ignite(block = TRUE))()
+```
+
+Ne pas hardcoder host/port dans `run.R` — ils sont lus depuis `PLUMBER2_HOST` / `PLUMBER2_PORT` via `get_opts()`. À noter : `host` et `port` se passent à `api()`, pas à `ignite()` (découvert en lisant le source de `Plumber2$initialize`).
+
+#### docker-compose.yml (pattern recommandé)
+
+```yaml
+services:
+  hello:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8091:8080"   # port interne unique par exemple (plumber2 défaut = 8080)
+    environment:
+      GLITCHTIP_DSN: ${GLITCHTIP_DSN}
+      PLUMBER2_HOST: "0.0.0.0"  # ← OBLIGATOIRE en Docker
+    volumes:
+      - ./api.R:/app/api.R        # ← montés en volume pour éviter le rebuild
+      - ./glitchtip.R:/app/glitchtip.R
+      - ./run.R:/app/run.R
+```
+
+**`PLUMBER2_HOST=0.0.0.0`** est indispensable. Sans ça, plumber2 bind sur `127.0.0.1` à l'intérieur du container → Docker ne peut pas forwarder le trafic. Découvert via `get_opts()` qui lit les variables d'environnement `PLUMBER2_*`.
+
+#### Workflow rebuild vs restart
+
+| Changement | Action |
+|-----------|--------|
+| `api.R`, `glitchtip.R`, `run.R` | `docker compose restart` ← fichiers montés en volume |
+| Nouvelle dépendance R (`install.packages`) | `docker compose build && docker compose up -d` |
+| Nouvelle dépendance système (`apt-get`) | `docker compose build && docker compose up -d` |
+
+Nginx fait le reverse proxy vers `127.0.0.1:8091`. Chaque exemple = un service = un port interne différent.
+
+#### Stratégie de déploiement — un sous-domaine par exemple
+
+`hx_serve_assets()` sert les assets à `/htmxr/assets/` (chemin absolu). Si l'app est déployée sous un sous-chemin (`demo.breant.art/hello/`), les assets et les routes HTMX (`hx-get="/plot"`) cassent silencieusement car nginx ne proxifie que le préfixe `/hello/`.
+
+**Solution retenue : un sous-domaine par exemple.**
+- `hello.demo.breant.art` → exemple hello (port 8091)
+- `select-input.demo.breant.art` → futur exemple (port 8092)
+- etc.
+
+Chaque exemple est à la racine de son domaine → tous les chemins absolus fonctionnent.
+
+#### ⚠️ Problème des chemins absolus — décision à prendre
+
+**Contexte :** toute la doc htmxr utilise des chemins absolus (`get = "/plot"`).
+En déploiement **à la racine d'un domaine** (`hello.breant.art`), c'est parfait.
+
+**Problème :** dès qu'on déploie sous un **sous-chemin** (`demo.breant.art/hello/`), les chemins absolus cassent silencieusement. HTMX envoie `GET demo.breant.art/plot` au lieu de `demo.breant.art/hello/plot`.
+
+**Solutions évaluées :**
+
+| Approche | Verdict |
+|----------|---------|
+| Chemins relatifs dans la doc (`get = "plot"`) | Change toute la doc, contre-intuitif |
+| `sub_filter` nginx | Fragile : à maintenir, rate les réponses partielles HTMX |
+| Un domaine/sous-domaine par exemple | ✅ Contournement propre à court terme |
+| `hx_set_base_path("/hello")` dans htmxr | ✅ **Vraie solution** — à implémenter |
+
+**Décision actuelle :** déploiement par sous-domaine (`hello.demo.breant.art`).
+**Feature à planifier :** `BASE_PATH` dans htmxr (analogue à `APPLICATION_ROOT` Flask, `root_path` FastAPI).
 
 ---
 
@@ -208,9 +313,85 @@ sb_listen(sb, table = "orders", on_change = function(payload) { ... })
 
 **Repo :** à créer — wrapper PostHog analytics
 
-### Backlog
-- Analytics d'usage pour les applications construites avec htmxr
-- Intégration côté serveur (plumber2) pour les events
+### Périmètre
+- Product analytics : qui utilise quoi, comment, quand
+- Capture d'events + identify (profil utilisateur) + feature flags
+- Intégration naturelle avec htmxr/plumber2, mais standalone aussi
+- PostHog est open source et self-hostable
+
+### API envisagée
+```r
+ph <- ph_connect(api_key = Sys.getenv("POSTHOG_KEY"))
+
+ph_capture(ph, distinct_id = "user_123", event = "report_generated",
+           properties = list(format = "pdf"))
+
+ph_identify(ph, distinct_id = "user_123",
+            properties = list(email = "john@acme.com", plan = "pro"))
+
+ph_feature_flag(ph, distinct_id = "user_123", flag = "new_dashboard")
+# → TRUE / FALSE / "variant-a"
+```
+
+---
+
+## glitchtipr
+
+**Repo :** à créer — error tracking pour R
+
+### Périmètre
+- Capturer, grouper et contextualiser les erreurs R en production
+- GlitchTip en priorité (open source, self-hostable, MIT)
+- Compatible API Sentry → fonctionne aussi avec Sentry si besoin
+- Standalone — utile hors htmxr (Shiny, scripts, pipelines)
+
+### API envisagée
+```r
+gt <- gt_connect(dsn = Sys.getenv("GLITCHTIP_DSN"))
+
+# gt_capture wrappe l'expression : capture, reporte, et propage l'erreur
+gt_capture(gt, {
+  ma_fonction()
+}, context = list(user = "user_123"))
+```
+
+**Implémentation interne : `withCallingHandlers` plutôt que `tryCatch`**
+- `withCallingHandlers` capture l'erreur sans dérouler la call stack → stack complète disponible dans GlitchTip
+- L'erreur continue de se propager naturellement après le report
+- `tryCatch` déroulait la stack et nécessitait un `stop(e)` explicite pour re-raiser
+
+### Quelles erreurs tracker ? — bonne pratique à documenter
+
+**Tracker :**
+- ✅ Erreurs métier (`db_connection_error`, `parsing_error`, calcul qui plante…)
+- ✅ Erreurs inattendues / non gérées (500)
+- ✅ Erreurs dans des processus critiques (génération rapport, sync données)
+
+**Ne pas tracker :**
+- ❌ 404 — bruit, souvent des bots qui scannent
+- ❌ 401/403 — comportement attendu (auth)
+- ❌ Erreurs de validation utilisateur — formulaire mal rempli, c'est normal
+
+**Règle d'or :** GlitchTip doit rester **actionnable**. Chaque erreur qui remonte doit signifier "quelqu'un doit investiguer". Noyer le tracking dans des 404 = ignorer toutes les alertes à terme.
+
+`glitchtipr` devra documenter ce filtre et potentiellement proposer un helper `gt_ignore_http(codes = c(404, 401, 403))`.
+
+### Typage des erreurs — bonne pratique à documenter
+
+Dans GlitchTip, le type d'erreur affiché correspond à `class(err)[1]`. Par défaut, `stop("message")` crée une `simpleError` — l'équivalent d'une `Exception` générique. Peu informatif en prod.
+
+**Pattern recommandé avec `rlang::abort()` :**
+```r
+# ❌ Difficile à monitorer
+stop("Connexion base de données échouée")
+# → GlitchTip affiche : simpleError
+
+# ✅ Typé, filtrable dans GlitchTip
+rlang::abort("Connexion base de données échouée", class = "db_connection_error")
+# → GlitchTip affiche : db_connection_error
+```
+
+`glitchtipr` devra documenter ce pattern et encourager les devs R à typer leurs erreurs — c'est un changement de culture pour l'écosystème R où `stop()` nu est la norme.
 
 ---
 
