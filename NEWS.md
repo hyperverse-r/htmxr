@@ -6,8 +6,8 @@
   `delete` (in addition to existing `get` and `post`).
 * New named parameters across `hx_set()` and all components (`hx_button()`,
   `hx_select_input()`, `hx_slider_input()`, `hx_table()`): `params`, `include`,
-  `push_url`, `select`, `vals`, `encoding`, `headers` — covering the full set
-  of htmx core attributes.
+  `push_url`, `select`, `vals`, `encoding`, `headers` — covering the most
+  commonly used htmx core attributes as named parameters.
 * `hx_set()` now accepts `...` as an escape hatch for raw htmx attributes not
   covered by named parameters (e.g. `` `hx-disabled-elt` = "this" ``,
   `` `hx-prompt` = "Reason?" ``). Names must start with `hx-` or `data-hx-`.
