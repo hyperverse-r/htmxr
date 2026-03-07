@@ -75,13 +75,18 @@ HTML page but only a fragment is needed (e.g. \code{"#data-table"}).}
 
 \item{vals}{JSON string of extra values to include in the request for
 \code{hx-vals} (e.g. \code{'{"id": 42}'}). Values are passed as-is — no
-serialisation is performed.}
+serialisation is performed. The \verb{js:} prefix for dynamic expressions is
+supported by htmx but expressions containing HTML-special characters
+(\code{<}, \code{>}, \code{&}, \verb{"}) will be escaped by htmltools and silently corrupted
+at runtime — avoid them or use DOM-based lookups instead.}
 
 \item{encoding}{Encoding type for \code{hx-encoding}. Use
 \code{"multipart/form-data"} to enable file uploads via \verb{<input type="file">}.}
 
 \item{headers}{JSON string of request headers for \code{hx-headers} (e.g.
-\code{'{"Authorization": "Bearer token"}'}). Values are passed as-is.}
+\code{'{"X-Custom-Header": "value"}'}). Values are passed as-is. Do not
+embed sensitive tokens (auth headers, API keys) in HTML attributes —
+they are readable by any script on the page.}
 
 \item{...}{Additional htmx attributes passed as-is (e.g.
 \code{`hx-disabled-elt` = "this"}, \code{`hx-prompt` = "Raison ?"}).

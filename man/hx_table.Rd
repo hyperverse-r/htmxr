@@ -92,13 +92,15 @@ values are included in the request. htmx relative selectors are valid:
 a specific element from the server response before swapping.}
 
 \item{vals}{JSON string of extra values for \code{hx-vals} (applied to
-\verb{<tbody>}). Values are passed as-is (e.g. \code{'{"id": 42}'}).}
+\verb{<tbody>}). Values are passed as-is (e.g. \code{'{"id": 42}'}). Avoid \verb{js:}
+expressions with HTML-special characters — htmltools will escape them.}
 
 \item{encoding}{Encoding type for \code{hx-encoding} (applied to \verb{<tbody>}).
 Use \code{"multipart/form-data"} to enable file uploads.}
 
 \item{headers}{JSON string of request headers for \code{hx-headers} (applied to
-\verb{<tbody>}). Values are passed as-is.}
+\verb{<tbody>}). Values are passed as-is. Do not embed sensitive tokens in
+HTML attributes.}
 
 \item{...}{Additional HTML attributes passed to the \verb{<table>} element.}
 }
