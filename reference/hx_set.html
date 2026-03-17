@@ -9,7 +9,7 @@ htmltools::tags object. Works with any HTML element."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@ htmltools::tags object. Works with any HTML element."><meta property="og:image" 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Add htmx attributes to any HTML tag</h1>
-      <small class="dont-index">Source: <a href="https://github.com/hyperverse-r/htmxr/blob/v0.2.0/R/hx_set.R" class="external-link"><code>R/hx_set.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/hyperverse-r/htmxr/blob/main/R/hx_set.R" class="external-link"><code>R/hx_set.R</code></a></small>
       <div class="d-none name"><code>hx_set.Rd</code></div>
     </div>
 
@@ -44,12 +44,23 @@ htmltools::tags object. Works with any HTML element."><meta property="og:image" 
 <span>  <span class="va">tag</span>,</span>
 <span>  get <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  post <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  put <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  patch <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  delete <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  target <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  swap <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  trigger <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  indicator <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  swap_oob <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  confirm <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  confirm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  params <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  include <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  push_url <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  select <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  vals <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  encoding <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  headers <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -67,6 +78,21 @@ htmltools::tags object. Works with any HTML element."><meta property="og:image" 
 
 <dt id="arg-post">post<a class="anchor" aria-label="anchor" href="#arg-post"></a></dt>
 <dd><p>URL for <code>hx-post</code>.</p></dd>
+
+
+<dt id="arg-put">put<a class="anchor" aria-label="anchor" href="#arg-put"></a></dt>
+<dd><p>URL for <code>hx-put</code>.</p></dd>
+
+
+<dt id="arg-patch">patch<a class="anchor" aria-label="anchor" href="#arg-patch"></a></dt>
+<dd><p>URL for <code>hx-patch</code>.</p></dd>
+
+
+<dt id="arg-delete">delete<a class="anchor" aria-label="anchor" href="#arg-delete"></a></dt>
+<dd><p>URL for <code>hx-delete</code>. Note: parameters are sent in the URL
+query string (not the request body) — read them via the injected <code>query</code>
+argument (e.g. <code>function(query) query$id</code>) or via <code>request$query</code> if you
+are using the full request object in your route.</p></dd>
 
 
 <dt id="arg-target">target<a class="anchor" aria-label="anchor" href="#arg-target"></a></dt>
@@ -91,6 +117,63 @@ htmltools::tags object. Works with any HTML element."><meta property="og:image" 
 
 <dt id="arg-confirm">confirm<a class="anchor" aria-label="anchor" href="#arg-confirm"></a></dt>
 <dd><p>Confirmation message for <code>hx-confirm</code>.</p></dd>
+
+
+<dt id="arg-params">params<a class="anchor" aria-label="anchor" href="#arg-params"></a></dt>
+<dd><p>Parameters to submit for <code>hx-params</code>. Use <code>"*"</code> to include
+all parameters (equivalent to omitting this argument), <code>"none"</code> to send
+none, or a comma-separated list of names (e.g. <code>"id, name"</code>). Prefix with
+<code>not</code> to exclude specific parameters (e.g. <code>"not id, name"</code>).</p></dd>
+
+
+<dt id="arg-include">include<a class="anchor" aria-label="anchor" href="#arg-include"></a></dt>
+<dd><p>CSS selector for <code>hx-include</code>. Additional elements whose
+values are included in the request. htmx relative selectors are valid:
+<code>"closest form"</code>, <code>"find input"</code>, <code>"next .sibling"</code>, <code>"previous .sibling"</code>.
+Note: <code>params = "none"</code> does <strong>not</strong> suppress values sourced via <code>include</code>
+— the two operate independently.</p></dd>
+
+
+<dt id="arg-push-url">push_url<a class="anchor" aria-label="anchor" href="#arg-push-url"></a></dt>
+<dd><p>Push a URL into the browser history for <code>hx-push-url</code>. Use
+<code>"true"</code> to push the request URL, <code>"false"</code> to disable (e.g. to override
+inheritance), or a custom URL string.</p></dd>
+
+
+<dt id="arg-select">select<a class="anchor" aria-label="anchor" href="#arg-select"></a></dt>
+<dd><p>CSS selector for <code>hx-select</code>. Extracts a specific element from
+the server response before swapping — useful when the server returns a full
+HTML page but only a fragment is needed (e.g. <code>"#data-table"</code>).</p></dd>
+
+
+<dt id="arg-vals">vals<a class="anchor" aria-label="anchor" href="#arg-vals"></a></dt>
+<dd><p>JSON string of extra values to include in the request for
+<code>hx-vals</code> (e.g. <code>'{"id": 42}'</code>). Values are passed as-is — no
+serialisation is performed. The <code>js:</code> prefix for dynamic expressions is
+supported by htmx but expressions containing HTML-special characters
+(<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code>) will be escaped by htmltools and silently corrupted
+at runtime — avoid them or use DOM-based lookups instead.</p></dd>
+
+
+<dt id="arg-encoding">encoding<a class="anchor" aria-label="anchor" href="#arg-encoding"></a></dt>
+<dd><p>Encoding type for <code>hx-encoding</code>. Use
+<code>"multipart/form-data"</code> to enable file uploads via <code>&lt;input type="file"&gt;</code>.</p></dd>
+
+
+<dt id="arg-headers">headers<a class="anchor" aria-label="anchor" href="#arg-headers"></a></dt>
+<dd><p>JSON string of request headers for <code>hx-headers</code> (e.g.
+<code>'{"X-Custom-Header": "value"}'</code>). Values are passed as-is. Do not
+embed sensitive tokens (auth headers, API keys) in HTML attributes —
+they are readable by any script on the page.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Additional htmx attributes passed as-is (e.g.
+<code>`hx-disabled-elt` = "this"</code>, <code>`hx-prompt` = "Raison ?"</code>).
+All arguments must be named. Names must start with <code>hx-</code> or <code>data-hx-</code> —
+a warning is emitted otherwise. Values are passed without transformation:
+use <code>"true"</code>/<code>"false"</code> (not <code>TRUE</code>/<code>FALSE</code>) for boolean htmx attributes,
+and pre-serialized JSON strings for <code>hx-vals</code> or <code>hx-headers</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

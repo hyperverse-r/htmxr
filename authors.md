@@ -7,16 +7,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/hyperverse-r/htmxr/blob/v0.2.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/hyperverse-r/htmxr/blob/main/DESCRIPTION)
 
 Bréant A (2026). *htmxr: Build Modern Web Applications with 'htmx' and
-'plumber2'*. R package version 0.2.0,
+'plumber2'*. R package version 0.3.0,
 <https://hyperverse-r.github.io/htmxr/>.
 
     @Manual{,
       title = {htmxr: Build Modern Web Applications with 'htmx' and 'plumber2'},
       author = {Arthur Bréant},
       year = {2026},
-      note = {R package version 0.2.0},
+      note = {R package version 0.3.0},
       url = {https://hyperverse-r.github.io/htmxr/},
     }

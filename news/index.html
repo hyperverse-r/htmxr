@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">htmxr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,9 +27,21 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/hyperverse-r/htmxr/blob/v0.2.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/hyperverse-r/htmxr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="htmxr-030">htmxr 0.3.0<a class="anchor" aria-label="anchor" href="#htmxr-030"></a></h2>
+<div class="section level3">
+<h3 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h3>
+<ul><li>
+<code><a href="../reference/hx_set.html">hx_set()</a></code> now accepts all CRUD verbs as named parameters: <code>put</code>, <code>patch</code>, <code>delete</code> (in addition to existing <code>get</code> and <code>post</code>).</li>
+<li>New named parameters across <code><a href="../reference/hx_set.html">hx_set()</a></code> and all components (<code><a href="../reference/hx_button.html">hx_button()</a></code>, <code><a href="../reference/hx_select_input.html">hx_select_input()</a></code>, <code><a href="../reference/hx_slider_input.html">hx_slider_input()</a></code>, <code><a href="../reference/hx_table.html">hx_table()</a></code>): <code>params</code>, <code>include</code>, <code>push_url</code>, <code>select</code>, <code>vals</code>, <code>encoding</code>, <code>headers</code> — covering the most commonly used htmx core attributes as named parameters.</li>
+<li>
+<code><a href="../reference/hx_set.html">hx_set()</a></code> now accepts <code>...</code> as an escape hatch for raw htmx attributes not covered by named parameters (e.g. <code>`hx-disabled-elt` = "this"</code>, <code>`hx-prompt` = "Reason?"</code>). Names must start with <code>hx-</code> or <code>data-hx-</code>.</li>
+<li>New example <code>delete-row</code> — demonstrates the <code>vals</code> attribute: each delete button embeds its row id as JSON via <code>hx-vals</code>, no form or hidden input needed.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="htmxr-020">htmxr 0.2.0<a class="anchor" aria-label="anchor" href="#htmxr-020"></a></h2><p class="text-muted">CRAN release: 2026-03-06</p>
 <div class="section level3">
