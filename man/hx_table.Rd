@@ -14,12 +14,22 @@ hx_table(
   thead_class = NULL,
   get = NULL,
   post = NULL,
+  put = NULL,
+  patch = NULL,
+  delete = NULL,
   target = NULL,
   swap = NULL,
   trigger = NULL,
   indicator = NULL,
   swap_oob = NULL,
   confirm = NULL,
+  params = NULL,
+  include = NULL,
+  push_url = NULL,
+  select = NULL,
+  vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 )
 }
@@ -47,6 +57,15 @@ specific columns, or an unnamed positional vector to replace all labels.}
 
 \item{post}{URL for \code{hx-post} (applied to \verb{<tbody>}).}
 
+\item{put}{URL for \code{hx-put} (applied to \verb{<tbody>}).}
+
+\item{patch}{URL for \code{hx-patch} (applied to \verb{<tbody>}).}
+
+\item{delete}{URL for \code{hx-delete} (applied to \verb{<tbody>}). Note: parameters
+are sent in the URL query string — read them via the injected \code{query}
+argument (e.g. \code{function(query) query$id}) or via \code{request$query} if you
+are using the full request object in your route.}
+
 \item{target}{CSS selector for \code{hx-target} (applied to \verb{<tbody>}).}
 
 \item{swap}{Swap strategy for \code{hx-swap} (applied to \verb{<tbody>}).}
@@ -58,6 +77,32 @@ specific columns, or an unnamed positional vector to replace all labels.}
 \item{swap_oob}{Out-of-band swap targets for \code{hx-swap-oob} (applied to \verb{<tbody>}).}
 
 \item{confirm}{Confirmation message for \code{hx-confirm} (applied to \verb{<tbody>}).}
+
+\item{params}{Parameters to submit for \code{hx-params}. Use \code{"*"} to include
+all parameters (equivalent to omitting this argument), \code{"none"} to send
+none, or a comma-separated list of names (e.g. \code{"id, name"}). Prefix with
+\code{not} to exclude specific parameters (e.g. \code{"not id, name"}).}
+
+\item{include}{CSS selector for \code{hx-include}. Additional elements whose
+values are included in the request. htmx relative selectors are valid:
+\code{"closest form"}, \code{"find input"}, \code{"next .sibling"}. Note: \code{params = "none"} does \strong{not} suppress values sourced via \code{include}.}
+
+\item{push_url}{Push a URL into the browser history for \code{hx-push-url}
+(applied to \verb{<tbody>}). Use \code{"true"}, \code{"false"}, or a custom URL.}
+
+\item{select}{CSS selector for \code{hx-select} (applied to \verb{<tbody>}). Extracts
+a specific element from the server response before swapping.}
+
+\item{vals}{JSON string of extra values for \code{hx-vals} (applied to
+\verb{<tbody>}). Values are passed as-is (e.g. \code{'{"id": 42}'}). Avoid \verb{js:}
+expressions with HTML-special characters — htmltools will escape them.}
+
+\item{encoding}{Encoding type for \code{hx-encoding} (applied to \verb{<tbody>}).
+Use \code{"multipart/form-data"} to enable file uploads.}
+
+\item{headers}{JSON string of request headers for \code{hx-headers} (applied to
+\verb{<tbody>}). Values are passed as-is. Do not embed sensitive tokens in
+HTML attributes.}
 
 \item{...}{Additional HTML attributes passed to the \verb{<table>} element.}
 }

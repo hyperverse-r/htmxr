@@ -24,6 +24,31 @@ test_that("hx_set() sets hx-post", {
   expect_equal(result$attribs[["hx-post"]], "/submit")
 })
 
+test_that("hx_set() sets hx-put", {
+  result <- hx_set(tags$div(), put = "/items/1")
+  expect_equal(result$attribs[["hx-put"]], "/items/1")
+})
+
+test_that("hx_set() sets hx-patch", {
+  result <- hx_set(tags$div(), patch = "/items/1")
+  expect_equal(result$attribs[["hx-patch"]], "/items/1")
+})
+
+test_that("hx_set() sets hx-delete", {
+  result <- hx_set(tags$div(), delete = "/items/1")
+  expect_equal(result$attribs[["hx-delete"]], "/items/1")
+})
+
+test_that("hx_set() sets hx-params", {
+  result <- hx_set(tags$div(), params = "none")
+  expect_equal(result$attribs[["hx-params"]], "none")
+})
+
+test_that("hx_set() sets hx-include", {
+  result <- hx_set(tags$div(), include = "#form")
+  expect_equal(result$attribs[["hx-include"]], "#form")
+})
+
 test_that("hx_set() sets hx-target", {
   result <- hx_set(tags$div(), target = "#result")
   expect_equal(result$attribs[["hx-target"]], "#result")
@@ -45,8 +70,8 @@ test_that("hx_set() sets hx-indicator", {
 })
 
 test_that("hx_set() sets hx-swap-oob", {
-  result <- hx_set(tags$div(), swap_oob = "#oob")
-  expect_equal(result$attribs[["hx-swap-oob"]], "#oob")
+  result <- hx_set(tags$div(), swap_oob = "outerHTML:#oob")
+  expect_equal(result$attribs[["hx-swap-oob"]], "outerHTML:#oob")
 })
 
 test_that("hx_set() sets hx-confirm", {
@@ -83,6 +108,73 @@ test_that("hx_set() works on various tag types", {
     result <- hx_set(tag_fn(), get = "/x")
     expect_equal(result$attribs[["hx-get"]], "/x")
   }
+})
+
+test_that("hx_set() sets hx-push-url", {
+  result <- hx_set(tags$div(), push_url = "true")
+  expect_equal(result$attribs[["hx-push-url"]], "true")
+})
+
+test_that("hx_set() sets hx-select", {
+  result <- hx_set(tags$div(), get = "/report", select = "#data-table")
+  expect_equal(result$attribs[["hx-select"]], "#data-table")
+})
+
+test_that("hx_set() sets hx-vals", {
+  result <- hx_set(tags$div(), post = "/items", vals = '{"id": 42}')
+  expect_equal(result$attribs[["hx-vals"]], '{"id": 42}')
+})
+
+test_that("hx_set() sets hx-encoding", {
+  result <- hx_set(
+    tags$form(),
+    post = "/upload",
+    encoding = "multipart/form-data"
+  )
+  expect_equal(result$attribs[["hx-encoding"]], "multipart/form-data")
+})
+
+test_that("hx_set() sets hx-headers", {
+  result <- hx_set(
+    tags$div(),
+    get = "/api",
+    headers = '{"X-Custom-Header": "value"}'
+  )
+  expect_equal(
+    result$attribs[["hx-headers"]],
+    '{"X-Custom-Header": "value"}'
+  )
+})
+
+test_that("hx_set() passes raw hx-* attributes via ...", {
+  result <- hx_set(tags$div(), `hx-disabled-elt` = "this")
+  expect_equal(result$attribs[["hx-disabled-elt"]], "this")
+})
+
+test_that("hx_set() accepts data-hx-* aliases via ...", {
+  result <- hx_set(tags$div(), `data-hx-get` = "/url")
+  expect_equal(result$attribs[["data-hx-get"]], "/url")
+})
+
+test_that("hx_set() warns on non-htmx attributes in ...", {
+  expect_warning(
+    hx_set(tags$div(), class = "foo"),
+    "non-htmx"
+  )
+})
+
+test_that("hx_set() errors when named param and ... conflict", {
+  expect_error(
+    hx_set(tags$div(), get = "/foo", `hx-get` = "/bar"),
+    "conflicting"
+  )
+})
+
+test_that("hx_set() errors when data-hx-* alias in ... conflicts with named param", {
+  expect_error(
+    hx_set(tags$div(), get = "/foo", `data-hx-get` = "/bar"),
+    "conflicting"
+  )
 })
 
 test_that("hx_set() produces correct HTML output", {

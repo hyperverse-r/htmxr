@@ -56,12 +56,38 @@ hx_table_rows <- function(data, columns = NULL, col_classes = NULL) {
 #' @param thead_class CSS class(es) for the `<thead>` element.
 #' @param get URL for `hx-get` (applied to `<tbody>`).
 #' @param post URL for `hx-post` (applied to `<tbody>`).
+#' @param put URL for `hx-put` (applied to `<tbody>`).
+#' @param patch URL for `hx-patch` (applied to `<tbody>`).
+#' @param delete URL for `hx-delete` (applied to `<tbody>`). Note: parameters
+#'   are sent in the URL query string — read them via the injected `query`
+#'   argument (e.g. `function(query) query$id`) or via `request$query` if you
+#'   are using the full request object in your route.
 #' @param target CSS selector for `hx-target` (applied to `<tbody>`).
 #' @param swap Swap strategy for `hx-swap` (applied to `<tbody>`).
 #' @param trigger Trigger specification for `hx-trigger` (applied to `<tbody>`).
 #' @param indicator CSS selector for `hx-indicator` (applied to `<tbody>`).
 #' @param swap_oob Out-of-band swap targets for `hx-swap-oob` (applied to `<tbody>`).
 #' @param confirm Confirmation message for `hx-confirm` (applied to `<tbody>`).
+#' @param params Parameters to submit for `hx-params`. Use `"*"` to include
+#'   all parameters (equivalent to omitting this argument), `"none"` to send
+#'   none, or a comma-separated list of names (e.g. `"id, name"`). Prefix with
+#'   `not` to exclude specific parameters (e.g. `"not id, name"`).
+#' @param include CSS selector for `hx-include`. Additional elements whose
+#'   values are included in the request. htmx relative selectors are valid:
+#'   `"closest form"`, `"find input"`, `"next .sibling"`. Note: `params =
+#'   "none"` does **not** suppress values sourced via `include`.
+#' @param push_url Push a URL into the browser history for `hx-push-url`
+#'   (applied to `<tbody>`). Use `"true"`, `"false"`, or a custom URL.
+#' @param select CSS selector for `hx-select` (applied to `<tbody>`). Extracts
+#'   a specific element from the server response before swapping.
+#' @param vals JSON string of extra values for `hx-vals` (applied to
+#'   `<tbody>`). Values are passed as-is (e.g. `'{"id": 42}'`). Avoid `js:`
+#'   expressions with HTML-special characters — htmltools will escape them.
+#' @param encoding Encoding type for `hx-encoding` (applied to `<tbody>`).
+#'   Use `"multipart/form-data"` to enable file uploads.
+#' @param headers JSON string of request headers for `hx-headers` (applied to
+#'   `<tbody>`). Values are passed as-is. Do not embed sensitive tokens in
+#'   HTML attributes.
 #' @param ... Additional HTML attributes passed to the `<table>` element.
 #'
 #' @return An [htmltools::tags] object (`<table>`).
@@ -92,12 +118,22 @@ hx_table <- function(
   thead_class = NULL,
   get = NULL,
   post = NULL,
+  put = NULL,
+  patch = NULL,
+  delete = NULL,
   target = NULL,
   swap = NULL,
   trigger = NULL,
   indicator = NULL,
   swap_oob = NULL,
   confirm = NULL,
+  params = NULL,
+  include = NULL,
+  push_url = NULL,
+  select = NULL,
+  vals = NULL,
+  encoding = NULL,
+  headers = NULL,
   ...
 ) {
   # Resolve column labels
@@ -129,12 +165,22 @@ hx_table <- function(
     hx_set(
       get = get,
       post = post,
+      put = put,
+      patch = patch,
+      delete = delete,
       target = target,
       swap = swap,
       trigger = trigger,
       indicator = indicator,
       swap_oob = swap_oob,
-      confirm = confirm
+      confirm = confirm,
+      params = params,
+      include = include,
+      push_url = push_url,
+      select = select,
+      vals = vals,
+      encoding = encoding,
+      headers = headers
     )
 
   # table
