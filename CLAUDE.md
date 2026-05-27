@@ -21,7 +21,7 @@
 
 ## Suivi de l'écosystème
 
-Consulter `dev/hyperverse.md` en début de session — état et roadmap de tous les packages hyperverse. Mettre à jour ce fichier au fil des échanges.
+Consulter `../hyperverse.md` (à la racine de `hyperverse-r/`) en début de session — état et roadmap de tous les packages hyperverse, partagé entre tous les repos. Mettre à jour ce fichier au fil des échanges.
 
 ## Contexte du projet
 
