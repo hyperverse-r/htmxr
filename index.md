@@ -11,6 +11,7 @@ together.
 ## Installation
 
 ``` r
+
 install.packages("htmxr")
 
 # or install the development version from GitHub:
@@ -44,6 +45,7 @@ The slider is created with
 which generates a `<input type="range">` wired to htmx attributes.
 
 ``` r
+
 #* @get /
 #* @parser none
 #* @serializer html
@@ -76,6 +78,7 @@ The `GET /plot` endpoint is a standard plumber2 handler. It receives the
 HTML fragment.
 
 ``` r
+
 generate_plot <- function(bins = 30) {
   svg_string <- svglite::xmlSVG({
     x <- faithful[, 2]
@@ -100,6 +103,7 @@ screenshot](reference/figures/intro_htmxr_hello.png)
 ### Run it
 
 ``` r
+
 hx_run_example("hello")
 ```
 

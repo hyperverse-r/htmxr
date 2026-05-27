@@ -2,28 +2,28 @@
 
 ## Commandes courantes
 
-| Raccourci   | Tâche                      | Commande                              |
-|-------------|----------------------------|---------------------------------------|
-| `/check`    | Vérifier le package        | `R -e "devtools::check()"`            |
-| `/test`     | Lancer les tests           | `R -e "devtools::test()"`             |
-| `/document` | Mettre à jour la doc       | `R -e "devtools::document()"`         |
-| `/attach`   | Mettre à jour le package   | `R -e "attachment::att_amend_desc()"` |
-| `/site`     | Construire le site pkgdown | `R -e "pkgdown::build_site()"`        |
-| `/format`   | Formater le code           | `air format .`                        |
+| Raccourci | Tâche | Commande |
+|----|----|----|
+| `/check` | Vérifier le package | `R -e "devtools::check()"` |
+| `/test` | Lancer les tests | `R -e "devtools::test()"` |
+| `/document` | Mettre à jour la doc | `R -e "devtools::document()"` |
+| `/attach` | Mettre à jour le package | `R -e "attachment::att_amend_desc()"` |
+| `/site` | Construire le site pkgdown | `R -e "pkgdown::build_site()"` |
+| `/format` | Formater le code | `air format .` |
 
 ## Agents
 
-| Raccourci          | Rôle                                     | Quand l’invoquer                     |
-|--------------------|------------------------------------------|--------------------------------------|
-| `/htmx-expert`     | Revue fidélité et idiomaticité htmx      | Nouvelle primitive créée ou modifiée |
-| `/shiny-ergonomie` | Regard dev Shiny sur l’intuitivité       | Travail sur nommage ou documentation |
-| `/shiny-cas-usage` | Couverture fonctionnelle par cas d’usage | Alimenter la roadmap                 |
+| Raccourci | Rôle | Quand l’invoquer |
+|----|----|----|
+| `/htmx-expert` | Revue fidélité et idiomaticité htmx | Nouvelle primitive créée ou modifiée |
+| `/shiny-ergonomie` | Regard dev Shiny sur l’intuitivité | Travail sur nommage ou documentation |
+| `/shiny-cas-usage` | Couverture fonctionnelle par cas d’usage | Alimenter la roadmap |
 
 ## Suivi de l’écosystème
 
-Consulter `dev/hyperverse.md` en début de session — état et roadmap de
-tous les packages hyperverse. Mettre à jour ce fichier au fil des
-échanges.
+Consulter `../hyperverse.md` (à la racine de `hyperverse-r/`) en début
+de session — état et roadmap de tous les packages hyperverse, partagé
+entre tous les repos. Mettre à jour ce fichier au fil des échanges.
 
 ## Contexte du projet
 
